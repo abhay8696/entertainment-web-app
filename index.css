@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 :root {
     font-family: "Outfit", sans-serif;
     font-weight: 300;
@@ -97,7 +102,21 @@
     font-size: 13px;
     font-weight: 300; /*light*/
   }
+
+
+  /* colors for icons */
+  .redFill{
+    fill: var(--color-primary);
+  }
   
+  .whiteFill{
+    fill: white;
+  }
+  
+  .greyFill{
+    fill: var(--color-greyish-blue)
+  }
+
   ::-webkit-scrollbar {
     width: 4px;
     /* border: 1px solid #d5d5d5; */
