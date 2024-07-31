@@ -3,4 +3,15 @@
   margin: 0 auto;
   padding: 0;
   text-align: center;
+  
+  display: flex;
+  flex-direction: column;
+
+}
+
+/* all screens above 1024px */
+@media screen and (min-width: 1024px) {
+  #root{
+    flex-direction: row;
+  }
 }
