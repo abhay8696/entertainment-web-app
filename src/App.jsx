@@ -7,10 +7,7 @@ function App() {
 
   return (
     <>
-      <div>
-        <h1 className='text-xl font-bold text-red-500'>Entertainment Web App</h1>
-        <Navbar />
-      </div>
+      <Navbar />
     </>
   )
 }

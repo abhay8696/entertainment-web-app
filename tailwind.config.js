@@ -5,7 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {width: {
+      'fullScreen': '100vw',
+    },},
   },
   plugins: [],
 }

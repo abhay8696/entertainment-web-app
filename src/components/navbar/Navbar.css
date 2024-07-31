@@ -1,2 +1,43 @@
 
+nav{
+    background-color: var(--color-semi-dark-blue);
+    height: 56px;
+}
 
+nav img{
+    cursor: pointer;
+}
+
+.appLogo{
+    max-width: 25px;
+}
+.nav-icon{
+    max-height: 16px;
+}
+
+.dpWrapper{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid white;
+    
+}
+.displayPicture{
+}
+
+/* all screens above 768px */
+@media screen and (min-width: 768px) {
+    nav{
+        border-radius: 1rem;
+    }
+    .appLogo{
+        max-width: 32px;
+    }
+    .nav-icon{
+        max-height: 20px;
+    }
+    .dpWrapper{
+        width: 32px;
+        height: 32px;
+    }
+}

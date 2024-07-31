@@ -35,6 +35,11 @@
     background-color: var(--color-dark-blue);
   }
   
+
+  main{
+    width: 100vw;
+    height: 100vh;
+  }
   
   img,
   picture,
@@ -132,3 +137,11 @@
     background: var(--color-dark-grey);;
     cursor: pointer;
   }
+
+
+/* all screens above 768px */
+@media screen and (min-width: 768px) {
+  main{
+    padding: 1rem !important; 
+  }
+}
