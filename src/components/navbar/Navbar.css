@@ -15,7 +15,7 @@ nav img{
     max-height: 16px;
 }
 
-.dpWrapper{
+.displayPicture{
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -25,19 +25,32 @@ nav img{
 .displayPicture{
 }
 
+.ss{
+    /* background-color: rebeccapurple; */
+}
 /* all screens above 768px */
 @media screen and (min-width: 768px) {
     nav{
         border-radius: 1rem;
     }
     .appLogo{
+        min-width: 32px;
         max-width: 32px;
     }
     .nav-icon{
         max-height: 20px;
     }
-    .dpWrapper{
+    .displayPicture{
         width: 32px;
         height: 32px;
+    }
+}
+
+
+/* all screens above 1024px */
+@media screen and (min-width: 1024px) {
+    .displayPicture{
+        width: 40px;
+        height: 40px;
     }
 }
