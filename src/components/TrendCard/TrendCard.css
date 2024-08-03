@@ -1,0 +1,40 @@
+
+.TrendCard{
+    background-color: var(--color-semi-dark-blue);
+    min-width: 240px;
+    width: 240px;
+    height: 140px;
+    border-radius: 0.5rem;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+}
+
+.cardButton{
+    background-color: var(--color-dark-blue);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    opacity: 0.5;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+/* all screens above 768px */
+@media screen and (min-width: 768px) {
+    .TrendCard{
+        min-width: 470px;
+        width: 470px;
+        height: 230px;
+    }
+    .cardButton{
+        top: 20px;
+        right: 20px;
+    }
+}
+
+
+/* all screens above 1024px */
+@media screen and (min-width: 1024px) {
+}

@@ -1,0 +1,46 @@
+
+.CardTexts{
+    width: 100%;
+    height: 70px;
+    border-radius: 0 0 0.5rem 0.5rem;
+    align-self: flex-end;
+    color: white;
+}
+
+.cardInfoWrapper{
+    opacity: 0.8;
+    font-size: 12px;
+}
+.cardInfoImg{
+    width: 12px;
+}
+
+.cardType{
+    text-transform: capitalize;
+}
+
+.cardRating{
+    text-transform: uppercase;
+}
+
+.cardName{
+    text-transform: capitalize;
+    font-size: 15px;
+}
+/* all screens above 768px */
+@media screen and (min-width: 768px) {
+    .CardTexts{
+        height: 100px;
+    }
+    .cardInfoWrapper{
+        font-size: 14px;
+    }
+    .cardName{
+        font-size: 24px;
+    }
+}
+
+
+/* all screens above 1024px */
+@media screen and (min-width: 1024px) {
+}

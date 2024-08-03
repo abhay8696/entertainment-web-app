@@ -8,7 +8,7 @@ import Recommendations from '../Recommendations/Recommendations';
 
 const AppBody = () => {
     return (
-        <div className='AppBody'>
+        <div className='AppBody '>
             <SearchComp />
             <Trending />
             <Recommendations />

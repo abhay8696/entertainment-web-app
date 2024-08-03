@@ -1,0 +1,15 @@
+
+.trendingDiv{
+}
+
+.trendCardGrid{
+    overflow-x: scroll;
+}
+
+
+/* all screens above 1024px */
+@media screen and (min-width: 1024px) {
+    .trendCardGrid{
+        max-width: calc(100vw - 2rem - 96px); /* total screen width - padding on both sides - navbar width*/
+    }    
+}
