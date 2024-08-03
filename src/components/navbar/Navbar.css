@@ -2,6 +2,9 @@
 nav{
     background-color: var(--color-semi-dark-blue);
     height: 56px;
+    position: fixed;
+    z-index: 10;
+
 }
 
 nav img{
@@ -43,6 +46,13 @@ nav img{
     .displayPicture{
         width: 32px;
         height: 32px;
+    }
+}
+
+/* all screens between 768px - 1024 */
+@media screen and (min-width: 768.1px) and (max-width: 1023.99px) {
+    nav{
+        width: calc(100vw - 2rem) !important;
     }
 }
 
