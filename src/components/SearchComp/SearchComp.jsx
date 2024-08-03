@@ -16,7 +16,7 @@ const SearchComp = () => {
     }
     
     return (
-        <form className='p-4 SearchComp flex items-center justify-start gap-2' onSubmit={handleSubmit}>
+        <form className='SearchComp flex items-center justify-start gap-2' onSubmit={handleSubmit}>
             <label htmlFor="searchText flex items-center justify-center">
                 <img src={searchIcon} alt='search icon' className='searchIcon w-7' />
             </label>
