@@ -1,0 +1,29 @@
+
+.RecomCardWrapper{
+}
+
+.RecomCard{
+    /* width: 164px; */
+    /* height: 110px; */
+    aspect-ratio: 1.6;
+    border-radius: 8px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+/* all screens above 768px */
+@media screen and (min-width: 768px) {
+    .RecomCard{
+        /* width: 220px; */
+        /* height: 140px; */
+    }
+}
+
+/* all screens above 1024px */
+@media screen and (min-width: 1024px) {
+    .RecomCard{
+        /* width: 280px; */
+        /* height: 174px; */
+    }
+}

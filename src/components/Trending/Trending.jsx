@@ -8,7 +8,7 @@ import TrendCard from '../TrendCard/TrendCard';
 const Trending = () => {
     return (
         <>
-            <h1 className='text-left'>Trending</h1>
+            <h1 >Trending</h1>
             <div className='flex gap-4 trendCardGrid'>
                 <TrendCard />
                 <TrendCard />
