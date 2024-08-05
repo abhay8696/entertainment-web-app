@@ -6,20 +6,22 @@ import tvIcon from "../../assets/icon-nav-tv-series.svg";
 import movieIcon from "../../assets/icon-nav-movies.svg";
 import bigDot from "../../assets/big-dot.svg";
 
-const CardTexts = () => {
+const CardTexts = props => {
+    const { year, category, rating, title, noData } = props;
+
     return (
         <>
             <div className='cardInfoWrapper flex items-center justify-center gap-2'>
-                <span className='cardInfo cardYear'>2019</span>
+                <span className='cardInfo cardYear'>{year}</span>
                 <img src={bigDot} alt='big dot'/>
                 <span className='cardInfo cardType flex items-center justify-center gap-2'>
                     <img src={movieIcon} alt="card type icon" className='cardInfoImg'/>
-                    <span>movie</span>
+                    <span>{category}</span>
                 </span>
                 <img src={bigDot} alt='big dot'/>
-                <span className='cardInfo cardRating'>pg</span>
+                <span className='cardInfo cardRating'>{rating}</span>
             </div>
-            <h4 className='cardName'>earth</h4>
+            <h4 className='cardName'>{title || "Loading..."}</h4>
         </>
     );
 };

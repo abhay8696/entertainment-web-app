@@ -1,0 +1,269 @@
+#BeyondEarth {
+    background-image: url(./assets/thumbnails/beyond-earth/trending/small.jpg);
+}
+#BottomGear {
+    background-image: url(./assets/thumbnails/bottom-gear/trending/small.jpg);
+}
+#UndiscoveredCities {
+    background-image: url(./assets/thumbnails/undiscovered-cities/trending/small.jpg);
+}
+#NinteenNightyEight {
+    background-image: url(./assets/thumbnails/1998/trending/small.jpg);
+}
+#DarkSideOfTheMoon {
+    background-image: url(./assets/thumbnails/dark-side-of-the-moon/trending/small.jpg);
+}
+#OneHundredAndTwelve {
+    background-image: url(./assets/thumbnails/112/regular/small.jpg);
+}
+#AsiaIn24Days {
+    background-image: url(./assets/thumbnails/asia-in-24-days/regular/small.jpg);
+}
+#AutosportTheSeries {
+    background-image: url(./assets/thumbnails/autosport-the-series/regular/small.jpg);
+}
+#BelowEcho {
+    background-image: url(./assets/thumbnails/below-echo/regular/small.jpg);
+}
+#CommunityOfOurs {
+    background-image: url(./assets/thumbnails/community-of-ours/regular/small.jpg);
+}
+#Darker {
+    background-image: url(./assets/thumbnails/darker/regular/small.jpg);
+}
+#Dogs {
+    background-image: url(./assets/thumbnails/dogs/regular/small.jpg);
+}
+#DuringTheHunt {
+    background-image: url(./assets/thumbnails/during-the-hunt/regular/small.jpg);
+}
+#EarthsUntouched {
+    background-image: url(./assets/thumbnails/earths-untouched/regular/small.jpg);
+}
+#LoneHeart {
+    background-image: url(./assets/thumbnails/lone-heart/regular/small.jpg);
+}
+#MissionSaturn {
+    background-image: url(./assets/thumbnails/mission-saturn/regular/small.jpg);
+}
+#NoLandBeyond {
+    background-image: url(./assets/thumbnails/no-land-beyond/regular/small.jpg);
+}
+#OffTheTrack {
+    background-image: url(./assets/thumbnails/off-the-track/regular/small.jpg);
+}
+#ProductionLine {
+    background-image: url(./assets/thumbnails/production-line/regular/small.jpg);
+}
+#Relentless {
+    background-image: url(./assets/thumbnails/relentless/regular/small.jpg);
+}
+#SameAnswerII {
+    background-image: url(./assets/thumbnails/same-answer-2/regular/small.jpg);
+}
+#TheDiary {
+    background-image: url(./assets/thumbnails/the-diary/regular/small.jpg);
+}
+#TheGreatLands {
+    background-image: url(./assets/thumbnails/the-great-lands/regular/small.jpg);
+}
+#TheHeiress {
+    background-image: url(./assets/thumbnails/the-heiress/regular/small.jpg);
+}
+#TheRockies {
+    background-image: url(./assets/thumbnails/the-rockies/regular/small.jpg);
+}
+#TheTastyTour {
+    background-image: url(./assets/thumbnails/the-tasty-tour/regular/small.jpg);
+}
+#UnresolvedCases {
+    background-image: url(./assets/thumbnails/unresolved-cases/regular/small.jpg);
+}
+#VanLife {
+    background-image: url(./assets/thumbnails/van-life/regular/small.jpg);
+}
+#WhisperingHill {
+    background-image: url(./assets/thumbnails/whispering-hill/regular/small.jpg);
+}
+
+/* all screens between 768px - 1024 */
+@media screen and (min-width: 768px) {
+    #BeyondEarth {
+        background-image: url(./assets/thumbnails/beyond-earth/trending/medium.jpg);
+    }
+    #BottomGear {
+        background-image: url(./assets/thumbnails/bottom-gear/trending/medium.jpg);
+    }
+    #UndiscoveredCities {
+        background-image: url(./assets/thumbnails/undiscovered-cities/trending/medium.jpg);
+    }
+    #NinteenNightyEight {
+        background-image: url(./assets/thumbnails/1998/trending/medium.jpg);
+    }
+    #DarkSideOfTheMoon {
+        background-image: url(./assets/thumbnails/dark-side-of-the-moon/trending/medium.jpg);
+    }
+    #OneHundredAndTwelve {
+        background-image: url(./assets/thumbnails/112/regular/medium.jpg);
+    }
+    #AsiaIn24Days {
+        background-image: url(./assets/thumbnails/asia-in-24-days/regular/medium.jpg);
+    }
+    #AutosportTheSeries {
+        background-image: url(./assets/thumbnails/autosport-the-series/regular/medium.jpg);
+    }
+    #BelowEcho {
+        background-image: url(./assets/thumbnails/below-echo/regular/medium.jpg);
+    }
+    #CommunityOfOurs {
+        background-image: url(./assets/thumbnails/community-of-ours/regular/medium.jpg);
+    }
+    #Darker {
+        background-image: url(./assets/thumbnails/darker/regular/medium.jpg);
+    }
+    #Dogs {
+        background-image: url(./assets/thumbnails/dogs/regular/medium.jpg);
+    }
+    #DuringTheHunt {
+        background-image: url(./assets/thumbnails/during-the-hunt/regular/medium.jpg);
+    }
+    #EarthsUntouched {
+        background-image: url(./assets/thumbnails/earths-untouched/regular/medium.jpg);
+    }
+    #LoneHeart {
+        background-image: url(./assets/thumbnails/lone-heart/regular/medium.jpg);
+    }
+    #MissionSaturn {
+        background-image: url(./assets/thumbnails/mission-saturn/regular/medium.jpg);
+    }
+    #NoLandBeyond {
+        background-image: url(./assets/thumbnails/no-land-beyond/regular/medium.jpg);
+    }
+    #OffTheTrack {
+        background-image: url(./assets/thumbnails/off-the-track/regular/medium.jpg);
+    }
+    #ProductionLine {
+        background-image: url(./assets/thumbnails/production-line/regular/medium.jpg);
+    }
+    #Relentless {
+        background-image: url(./assets/thumbnails/relentless/regular/medium.jpg);
+    }
+    #SameAnswerII {
+        background-image: url(./assets/thumbnails/same-answer-2/regular/medium.jpg);
+    }
+    #TheDiary {
+        background-image: url(./assets/thumbnails/the-diary/regular/medium.jpg);
+    }
+    #TheGreatLands {
+        background-image: url(./assets/thumbnails/the-great-lands/regular/medium.jpg);
+    }
+    #TheHeiress {
+        background-image: url(./assets/thumbnails/the-heiress/regular/medium.jpg);
+    }
+    #TheRockies {
+        background-image: url(./assets/thumbnails/the-rockies/regular/medium.jpg);
+    }
+    #TheTastyTour {
+        background-image: url(./assets/thumbnails/the-tasty-tour/regular/medium.jpg);
+    }
+    #UnresolvedCases {
+        background-image: url(./assets/thumbnails/unresolved-cases/regular/medium.jpg);
+    }
+    #VanLife {
+        background-image: url(./assets/thumbnails/van-life/regular/medium.jpg);
+    }
+    #WhisperingHill {
+        background-image: url(./assets/thumbnails/whispering-hill/regular/medium.jpg);
+    }
+}
+
+/* all screens above 1024px */
+@media screen and (min-width: 1024px) {
+    #BeyondEarth {
+        background-image: url(./assets/thumbnails/beyond-earth/trending/large.jpg);
+    }
+    #BottomGear {
+        background-image: url(./assets/thumbnails/bottom-gear/trending/large.jpg);
+    }
+    #UndiscoveredCities {
+        background-image: url(./assets/thumbnails/undiscovered-cities/trending/large.jpg);
+    }
+    #NinteenNightyEight {
+        background-image: url(./assets/thumbnails/1998/trending/large.jpg);
+    }
+    #DarkSideOfTheMoon {
+        background-image: url(./assets/thumbnails/dark-side-of-the-moon/trending/large.jpg);
+    }
+    #OneHundredAndTwelve {
+        background-image: url(./assets/thumbnails/112/regular/large.jpg);
+    }
+    #AsiaIn24Days {
+        background-image: url(./assets/thumbnails/asia-in-24-days/regular/large.jpg);
+    }
+    #AutosportTheSeries {
+        background-image: url(./assets/thumbnails/autosport-the-series/regular/large.jpg);
+    }
+    #BelowEcho {
+        background-image: url(./assets/thumbnails/below-echo/regular/large.jpg);
+    }
+    #CommunityOfOurs {
+        background-image: url(./assets/thumbnails/community-of-ours/regular/large.jpg);
+    }
+    #Darker {
+        background-image: url(./assets/thumbnails/darker/regular/large.jpg);
+    }
+    #Dogs {
+        background-image: url(./assets/thumbnails/dogs/regular/large.jpg);
+    }
+    #DuringTheHunt {
+        background-image: url(./assets/thumbnails/during-the-hunt/regular/large.jpg);
+    }
+    #EarthsUntouched {
+        background-image: url(./assets/thumbnails/earths-untouched/regular/large.jpg);
+    }
+    #LoneHeart {
+        background-image: url(./assets/thumbnails/lone-heart/regular/large.jpg);
+    }
+    #MissionSaturn {
+        background-image: url(./assets/thumbnails/mission-saturn/regular/large.jpg);
+    }
+    #NoLandBeyond {
+        background-image: url(./assets/thumbnails/no-land-beyond/regular/large.jpg);
+    }
+    #OffTheTrack {
+        background-image: url(./assets/thumbnails/off-the-track/regular/large.jpg);
+    }
+    #ProductionLine {
+        background-image: url(./assets/thumbnails/production-line/regular/large.jpg);
+    }
+    #Relentless {
+        background-image: url(./assets/thumbnails/relentless/regular/large.jpg);
+    }
+    #SameAnswerII {
+        background-image: url(./assets/thumbnails/same-answer-2/regular/large.jpg);
+    }
+    #TheDiary {
+        background-image: url(./assets/thumbnails/the-diary/regular/large.jpg);
+    }
+    #TheGreatLands {
+        background-image: url(./assets/thumbnails/the-great-lands/regular/large.jpg);
+    }
+    #TheHeiress {
+        background-image: url(./assets/thumbnails/the-heiress/regular/large.jpg);
+    }
+    #TheRockies {
+        background-image: url(./assets/thumbnails/the-rockies/regular/large.jpg);
+    }
+    #TheTastyTour {
+        background-image: url(./assets/thumbnails/the-tasty-tour/regular/large.jpg);
+    }
+    #UnresolvedCases {
+        background-image: url(./assets/thumbnails/unresolved-cases/regular/large.jpg);
+    }
+    #VanLife {
+        background-image: url(./assets/thumbnails/van-life/regular/large.jpg);
+    }
+    #WhisperingHill {
+        background-image: url(./assets/thumbnails/whispering-hill/regular/large.jpg);
+    }
+}
