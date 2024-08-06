@@ -12,13 +12,13 @@ const githubRepoAssetsLink = "https://github.com/abhay8696/entertainment-web-app
 const dummyUrl = "url(https://images.unsplash.com/photo-1722136682317-a06fda3ebeba?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)"
 
 const TrendCard = props => {
-    const { year, category, rating, title, noData, thumbnail, trendImg } = props;
+    const { year, category, rating, title, noData, thumbnail, trendImg, getOMDB } = props;
     
     return (
         <div 
             className='TrendCard flex items-end'
             id = {title === "1998" ? "NinteenNightyEight-small" : `${transformString(title)}-small`} //remove spaces
-            onClick={()=> console.log(title.replace(/\s+/g, ''))}
+            onClick={()=> getOMDB({title, year, type: category})}
         >
             <span className='cardButton flex items-center justify-center'>
                 <img src={bookmark} alt='bookmark' className='nav-icon mx-2'/>

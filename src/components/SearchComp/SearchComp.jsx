@@ -4,7 +4,8 @@ import "./SearchComp.css";
 //assets
 import searchIcon from "../../assets/icon-search.svg";
 
-const SearchComp = () => {
+const SearchComp = props => {
+    const { getOMDB } = props;
     //states 
     const [text, setText] = useState("");
     //functions
@@ -13,6 +14,7 @@ const SearchComp = () => {
     }
     const handleSubmit = evt => {
         evt.preventDefault();
+        getOMDB({title: text});
     }
     
     return (
@@ -26,6 +28,7 @@ const SearchComp = () => {
                 value={text}
                 placeholder='Search for movies or TV series'
                 id='searchText'
+                required
             />
         </form>
     );

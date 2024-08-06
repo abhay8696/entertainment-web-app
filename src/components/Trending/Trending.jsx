@@ -6,7 +6,7 @@ import TrendCard from '../TrendCard/TrendCard';
 
 
 const Trending = props => {
-    const { initialData } = props;
+    const { initialData, getOMDB } = props;
     // const initialData = []
 
     //functions
@@ -26,6 +26,7 @@ const Trending = props => {
                         rating = {rating}
                         title = {title}
                         thumbnail = {thumbnail}
+                        getOMDB={getOMDB}
                     />
                 )
             }

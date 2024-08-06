@@ -7,3 +7,15 @@ export const transformString = str=> {
     transformedString = transformedString.replace(/[’':]/g, '');
     return transformedString;
 }
+
+//convert space to +
+export const string_to_url_string = str =>{
+    let newStr = "";
+
+    for(let i = 0; i < str.length; i++){
+        if(str[i].charCodeAt(0) === 32) newStr = newStr.concat("+");
+        else newStr = newStr.concat(str[i]);
+    }
+
+    return newStr;
+}

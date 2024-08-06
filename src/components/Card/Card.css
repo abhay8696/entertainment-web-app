@@ -1,29 +1,39 @@
 
-.RecomCardWrapper{
+.CardWrapper{
 }
 
-.RecomCard{
-    /* width: 164px; */
-    /* height: 110px; */
-    aspect-ratio: 1.6;
+.Card{
     border-radius: 8px;
     background-position: center;
     background-size: cover;
     position: relative;
 }
+.Recommendations-card{
+    aspect-ratio: 1.6;
+}
+
+.SearchResult-card{
+    aspect-ratio: 0.6666;
+    max-width: 150px;
+}
 
 /* all screens above 768px */
 @media screen and (min-width: 768px) {
-    .RecomCard{
+    .Card{
         /* width: 220px; */
         /* height: 140px; */
+    }
+    .SearchResult-card{
     }
 }
 
 /* all screens above 1024px */
 @media screen and (min-width: 1024px) {
-    .RecomCard{
+    .Card{
         /* width: 280px; */
         /* height: 174px; */
+    }
+    .SearchResult-card{
+        max-width: 250px;
     }
 }

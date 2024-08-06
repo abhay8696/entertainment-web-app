@@ -3,7 +3,7 @@ import React from 'react';
 // import "./Recommendations.css"
 import "../../imageUrls.css"
 //components
-import RecomCard from '../RecomCard/RecomCard';
+import Card from '../Card/Card';
 
 const Recommendations = props => {
     const { initialData } = props;
@@ -11,19 +11,20 @@ const Recommendations = props => {
     //functions
     const displayInitialData = () => {
 
-        if(!initialData || !initialData?.length) return [<RecomCard noData={true}/>, <RecomCard noData={true}/>, <RecomCard noData={true}/>, <RecomCard noData={true}/>, <RecomCard noData={true}/>];
+        if(!initialData || !initialData?.length) return [<Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>];
         
 
         return initialData.map(item => {
             if(item){
                 const { year, category, rating, title, thumbnail } = item;
                 return(
-                    <RecomCard
+                    <Card
                         year = {year}
                         category = {category}
                         rating = {rating}
                         title = {title}
                         thumbnail = {thumbnail}
+                        parentComp = {"Recommendations"}
                     />
                 )
             }
