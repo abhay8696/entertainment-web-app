@@ -2,7 +2,7 @@ import React from 'react';
 //styles
 import "./Trending.css"
 //components
-import TrendCard from '../TrendCard/TrendCard';
+import Card from '../Card/Card';
 
 
 const Trending = props => {
@@ -12,21 +12,21 @@ const Trending = props => {
     //functions
     const displayInitialData = () => {
 
-        if(!initialData || !initialData?.length) return [<TrendCard noData={true}/>, <TrendCard noData={true}/>, <TrendCard noData={true}/>, <TrendCard noData={true}/>, <TrendCard noData={true}/>];
+        if(!initialData || !initialData?.length) return [<Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>];
         
 
         return initialData.map(item => {
             if(item?.isTrending){
                 const { year, category, rating, title, thumbnail } = item;
                 return(
-                    <TrendCard
-                    item={item}
+                    <Card
                         year = {year}
                         category = {category}
                         rating = {rating}
                         title = {title}
                         thumbnail = {thumbnail}
                         getOMDB={getOMDB}
+                        parentComp = "Trending"
                     />
                 )
             }

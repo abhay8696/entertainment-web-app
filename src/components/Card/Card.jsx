@@ -16,12 +16,19 @@ const Card = props => {
 
     title === "1998" ? cardID = "NinteenNightyEight" : null;
     title === "112" ? cardID = "OneHundredAndTwelve" : null;
-
-    const createClassName = () => {
-        if(parentComp === "Recommendations") return 'Card flex RecomCard';
-        if(parentComp === "SearchResult") return 'Card flex SearchCard';
-        
-        return 'Card flex';
+    
+    const displayInfo = (padding)=> {
+        return(
+            <div div className={`CardTexts flex flex-col items-start ${padding} justify-between`}>
+                <CardTexts 
+                    year = {year}
+                    category = {category}
+                    rating = {rating}
+                    title = {title}
+                    noData = {noData}
+                />
+            </div>
+        )
     }
 
     return (
@@ -37,16 +44,13 @@ const Card = props => {
                 <span className='cardButton flex items-center justify-center'>
                     <img src={bookmark} alt='bookmark' className='nav-icon mx-2'/>
                 </span>
+                {
+                    parentComp === "Trending" ? displayInfo("p-3 md:p-5") : null
+                }
             </div>
-            <div div className='CardTexts  flex flex-col items-start py-3 md:py-5 justify-between'>
-                <CardTexts 
-                    year = {year}
-                    category = {category}
-                    rating = {rating}
-                    title = {title}
-                    noData = {noData}
-                />
-            </div>
+            {
+                parentComp != "Trending" ? displayInfo("py-3 md:py-5") : null
+            }
         </div>
     );
 };

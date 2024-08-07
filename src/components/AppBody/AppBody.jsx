@@ -14,7 +14,7 @@ import { string_to_url_string } from '../../functions';
 import SearchResult from '../SearchResult/SearchResult';
 //variables
 const omdbKey = "b76a9ec3"
-const omdbUrl = `http://www.omdbapi.com/?apikey=${omdbKey}&`;
+const omdbUrl = `http://www.omdbapi.com/?apikey=${omdbKey}&page=2`;
 
 
 const AppBody = () => {
