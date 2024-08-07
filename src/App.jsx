@@ -4,12 +4,23 @@ import Navbar from './components/navbar/Navbar'
 import AppBody from './components/AppBody/AppBody'
 
 function App() {
-  const [count, setCount] = useState(0)
+  //states
+  const [searchedItem, setSearchedItem] = useState({
+      found: false
+  });
+  //functions
+  const closeSearch = ()=> {
+    setSearchedItem = {found: false};
+  }
+  
+  const handleSearchItem = data => {
+    setSearchedItem(data);
+  }
 
   return (
     <>
-      <Navbar />
-      <AppBody />
+      <Navbar searchedItem={searchedItem} closeSearch={closeSearch}/>
+      <AppBody searchedItem={searchedItem} closeSearch={closeSearch} handleSearchItem={handleSearchItem}/>
     </>
   )
 }

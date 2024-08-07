@@ -5,12 +5,13 @@ import "./SearchComp.css";
 import searchIcon from "../../assets/icon-search.svg";
 
 const SearchComp = props => {
-    const { getOMDB } = props;
+    const { getOMDB, handleSearchItem } = props;
     //states 
     const [text, setText] = useState("");
     //functions
     const handleChange = evt => {
-        setText(evt.target.value);
+        setText(pre=> evt.target.value);
+        if(!evt.target.value.length) handleSearchItem({found: false})
     }
     const handleSubmit = evt => {
         evt.preventDefault();

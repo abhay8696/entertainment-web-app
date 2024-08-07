@@ -17,11 +17,8 @@ const omdbKey = "b76a9ec3"
 const omdbUrl = `http://www.omdbapi.com/?apikey=${omdbKey}&page=2`;
 
 
-const AppBody = () => {
-    //states
-    const [searchedItem, setSearchedItem] = useState({
-        found: false
-    });
+const AppBody = props => {
+    const { searchedItem, closeSearch, handleSearchItem } = props;
     //life cycle - on App load
     useEffect(()=> {
         // loadData();
@@ -46,19 +43,19 @@ const AppBody = () => {
             const response = await axios.get(url);
             
             if(response?.data?.Response === "True"){
-                setSearchedItem({
+                handleSearchItem({
                     found: true,
                     data: {...response?.data}
                 })
             }else{
-                setSearchedItem({
+                handleSearchItem({
                     found: false,
                     data: {...response?.data},
                     message: "This app uses third party API called OMDB, make sure searched term is correct."
                 })
             }
         }catch(err){
-            setSearchedItem({
+            handleSearchItem({
                 found: false,
                 data: {...response?.data},
                 message: err
@@ -69,7 +66,7 @@ const AppBody = () => {
     return (
         <div className='AppBody text-start flex flex-col gap-6 md:gap-8 pt-14 lg:pt-0 lg:pl-24 my-6 md:my-8'>
             <div className='px-4 md:px-0 lg:px-9'>
-                <SearchComp getOMDB={getOMDB}/>
+                <SearchComp getOMDB={getOMDB} handleSearchItem={handleSearchItem}/>
             </div>
             {
                 searchedItem.found 
