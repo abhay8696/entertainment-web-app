@@ -6,18 +6,16 @@ import Card from '../Card/Card';
 
 
 const Trending = props => {
-    const { initialData, getOMDB } = props;
-    // const initialData = []
-
+    const { dummyData, getOMDB } = props;
     //functions
-    const displayInitialData = () => {
+    const displayDummyData = () => {
 
-        if(!initialData || !initialData?.length) return [<Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>];
+        if(!dummyData || !dummyData?.length) return [<Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>];
         
 
-        return initialData.map(item => {
+        return dummyData.map(item => {
             if(item?.isTrending){
-                const { year, category, rating, title, thumbnail } = item;
+                const { year, category, rating, title, thumbnail, id } = item;
                 return(
                     <Card
                         year = {year}
@@ -27,6 +25,7 @@ const Trending = props => {
                         thumbnail = {thumbnail}
                         getOMDB={getOMDB}
                         parentComp = "Trending"
+                        key = {id}
                     />
                 )
             }
@@ -36,7 +35,7 @@ const Trending = props => {
         <>
             <h1 >Trending</h1>
             <div className='flex gap-4 trendCardGrid'>
-                {displayInitialData()}
+                {displayDummyData()}
             </div>
         </>
     );

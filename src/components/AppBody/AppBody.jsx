@@ -7,7 +7,6 @@ import "./AppBody.css";
 import SearchComp from '../SearchComp/SearchComp';
 import Trending from '../Trending/Trending';
 import Recommendations from '../Recommendations/Recommendations';
-//data
 import initialData from "../../data.json";
 //functions
 import { string_to_url_string } from '../../functions';
@@ -18,12 +17,8 @@ const omdbUrl = `http://www.omdbapi.com/?apikey=${omdbKey}&page=2`;
 
 
 const AppBody = props => {
-    const { searchedItem, closeSearch, handleSearchItem } = props;
+    const { searchedItem, closeSearch, handleSearchItem, dummyData } = props;
     //life cycle - on App load
-    useEffect(()=> {
-        // loadData();
-    }, []);
-
     //functions
     const getOMDB = async ({title, year, type}) => {
         let url = `${omdbUrl}`;
@@ -77,10 +72,10 @@ const AppBody = props => {
                 :
                 <>
                     <div className='trendingDiv flex flex-col gap-4 px-4 md:px-0 lg:px-9'>
-                        <Trending initialData={initialData} getOMDB={getOMDB}/>
+                        {dummyData ? <Trending dummyData={dummyData} getOMDB={getOMDB}/> : null}
                     </div>
                     <div className='recommendationDiv flex flex-col gap-4 px-4 md:px-0 lg:px-9'>
-                        <Recommendations initialData={initialData}/>
+                        {dummyData ? <Recommendations dummyData={dummyData}/> : null}
                     </div>
                 </>
             }

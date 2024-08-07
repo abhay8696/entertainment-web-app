@@ -6,17 +6,17 @@ import "../../imageUrls.css"
 import Card from '../Card/Card';
 
 const Recommendations = props => {
-    const { initialData } = props;
+    const { dummyData } = props;
 
     //functions
-    const displayInitialData = () => {
+    const displayDummyData = () => {
 
-        if(!initialData || !initialData?.length) return [<Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>];
+        if(!dummyData || !dummyData?.length) return [<Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>, <Card noData={true}/>];
         
 
-        return initialData.map(item => {
+        return dummyData.map(item => {
             if(item){
-                const { year, category, rating, title, thumbnail } = item;
+                const { year, category, rating, title, thumbnail, id } = item;
                 return(
                     <Card
                         year = {year}
@@ -25,6 +25,7 @@ const Recommendations = props => {
                         title = {title}
                         thumbnail = {thumbnail}
                         parentComp = {"Recommendations"}
+                        key = {id}
                     />
                 )
             }
@@ -35,7 +36,7 @@ const Recommendations = props => {
         <>
         <h1 >Recommended for you</h1>
         <div className='flex gap-4 recomCardGrid grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
-            {displayInitialData()}
+            {displayDummyData()}
         </div>
         </>
     );
