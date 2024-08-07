@@ -16,7 +16,25 @@ function App() {
   }, []);
 
   //functions
-  const onLoad = () => setDummyData(loadDummyData());
+  const onLoad = () => {
+    //get dummyData from local
+    let data = window.localStorage.getItem("dummyData");
+    if(data){
+      console.log("dummyData found in local storage");
+      data = JSON.parse(data);
+      console.log(data)
+    }
+    else{//if not found save to local
+      console.log("dummyData not found in local storage, getting from loadDummyData function")
+      data = loadDummyData();
+      console.log("saving data to local storage...")
+      window.localStorage.setItem("dummyData", JSON.stringify(data));
+    }
+
+    //save data as state to pass down as props
+    console.log("storing as state");
+    setDummyData(data);
+  };
 
   const closeSearch = ()=> {
     setSearchedItem({found: false});
