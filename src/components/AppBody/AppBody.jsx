@@ -17,7 +17,7 @@ const omdbUrl = `http://www.omdbapi.com/?apikey=${omdbKey}&page=2`;
 
 
 const AppBody = props => {
-    const { searchedItem, closeSearch, handleSearchItem, dummyData } = props;
+    const { searchedItem, closeSearch, handleSearchItem, dummyData, categoreyName, handleBookMarks, bookmarkSet } = props;
     //life cycle - on App load
     //functions
     const getOMDB = async ({title, year, type}) => {
@@ -67,15 +67,41 @@ const AppBody = props => {
                 searchedItem.found 
                 ?
                     <div className='trendingDiv flex flex-col gap-4 px-4 md:px-0 lg:px-9'>
-                        <SearchResult data={searchedItem?.data}/>
+                        <SearchResult 
+                            bookmarkSet={bookmarkSet}
+                            handleBookMarks={handleBookMarks} 
+                            data={searchedItem?.data}
+                        />
                     </div>
                 :
                 <>
                     <div className='trendingDiv flex flex-col gap-4 px-4 md:px-0 lg:px-9'>
-                        {dummyData ? <Trending dummyData={dummyData} getOMDB={getOMDB}/> : null}
+                        {
+                        dummyData 
+                        ? 
+                        <Trending 
+                            bookmarkSet={bookmarkSet}
+                            handleBookMarks={handleBookMarks} 
+                            categoreyName={categoreyName} 
+                            dummyData={dummyData} 
+                            getOMDB={getOMDB}
+                        /> 
+                            
+                        : 
+                        null}
                     </div>
                     <div className='recommendationDiv flex flex-col gap-4 px-4 md:px-0 lg:px-9'>
-                        {dummyData ? <Recommendations dummyData={dummyData}/> : null}
+                        {
+                        dummyData 
+                        ? 
+                        <Recommendations 
+                            bookmarkSet={bookmarkSet}
+                            handleBookMarks={handleBookMarks} 
+                            categoreyName={categoreyName} 
+                            dummyData={dummyData}
+                        /> 
+                        : 
+                        null}
                     </div>
                 </>
             }

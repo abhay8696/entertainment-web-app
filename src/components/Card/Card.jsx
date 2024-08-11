@@ -10,12 +10,12 @@ import bookmark from "../../assets/icon-bookmark-outline.svg";
 import { transformString } from '../../functions';
 
 const Card = props => {
-    const { year, category, rating, title, noData, thumbnail, trendImg, poster, parentComp } = props;
+    const { year, category, rating, title, noData, thumbnail, trendImg, poster, parentComp, bookmarkSet, handleBookMarks, cardID } = props;
 
-    let cardID = title;
+    let cardTitle = title;
 
-    title === "1998" ? cardID = "NinteenNightyEight" : null;
-    title === "112" ? cardID = "OneHundredAndTwelve" : null;
+    title === "1998" ? cardTitle = "NinteenNightyEight" : null;
+    title === "112" ? cardTitle = "OneHundredAndTwelve" : null;
     
     const displayInfo = (padding)=> {
         return(
@@ -31,17 +31,24 @@ const Card = props => {
         )
     }
 
+    const handleClickBookMark = () => {
+        console.log(cardID, bookmarkSet)
+        let type;
+        bookmarkSet.has(cardID) ? type = "remove" : type = "add";
+        // console.log(cardID, type)
+        handleBookMarks(cardID, type);
+    }
+
     return (
         <div className='CardWrapper'>
             <div 
                 className={`Card flex ${parentComp}-card`}
-                id = {`${transformString(cardID)}-small`} //remove spaces nad special characters
-                onClick={()=> console.log(title)}
+                id = {`${transformString(cardTitle)}-small`} //remove spaces nad special characters
                 style={{
                     backgroundImage: poster ? `url(${poster})` : ""
                 }}
             >
-                <span className='cardButton flex items-center justify-center'>
+                <span onClick={handleClickBookMark} className='cardButton flex items-center justify-center'>
                     <img src={bookmark} alt='bookmark' className='nav-icon mx-2'/>
                 </span>
                 {

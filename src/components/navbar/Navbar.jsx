@@ -16,15 +16,15 @@ class names "greyfill", "redFill", "whiteFill" are declared in index.css
 
 //values for svgs
 const Navbar = props => {
-    const { closeSearch } = props;
+    const { closeSearch, handleCategoreyName, categoreyName } = props;
     return (
         <nav className='w-screen md:w-auto lg:w-24 lg:py-8 lg:h-full lg:gap-20 flex items-center justify-between p-4 lg:flex-col'>
             <img src={logo} alt='logo' className='w-7 appLogo' onClick={()=> closeSearch()}/>
             <span className='flex items-center justify-between lg:justify-start sm:gap-5 lg:gap-10 lg:grow lg:flex-col '>
-                <img src={home} alt='home' className='nav-icon mx-2'/>
-                <img src={movies} alt='movies' className='nav-icon mx-2'/>
-                <img src={tv} alt='tv' className='nav-icon mx-2'/>
-                <img src={bookmark} alt='bookmark' className='nav-icon mx-2'/>
+                <img onClick={()=> handleCategoreyName("all")} src={home} alt='home' className='nav-icon mx-2'/>
+                <img onClick={()=> handleCategoreyName("movie")} src={movies} alt='movies' className='nav-icon mx-2'/>
+                <img onClick={()=> handleCategoreyName("tv")} src={tv} alt='tv' className='nav-icon mx-2'/>
+                <img onClick={()=> handleCategoreyName("bookmark")} src={bookmark} alt='bookmark' className='nav-icon mx-2'/>
             </span>
             <span className='dpWrapper flex items-center justify-center'>
                 <img src={displayPicture} alt='display picture' className='displayPicture'/>

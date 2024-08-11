@@ -6,7 +6,7 @@ import Card from '../Card/Card';
 
 
 const Trending = props => {
-    const { dummyData, getOMDB } = props;
+    const { dummyData, getOMDB, categoreyName, handleBookMarks, bookmarkSet  } = props;
     //functions
     const displayDummyData = () => {
 
@@ -14,20 +14,26 @@ const Trending = props => {
         
 
         return dummyData.map(item => {
+            const { year, category, rating, title, thumbnail, id } = item;
+
             if(item?.isTrending){
-                const { year, category, rating, title, thumbnail, id } = item;
-                return(
-                    <Card
-                        year = {year}
-                        category = {category}
-                        rating = {rating}
-                        title = {title}
-                        thumbnail = {thumbnail}
-                        getOMDB={getOMDB}
-                        parentComp = "Trending"
-                        key = {id}
-                    />
-                )
+                if(category.toLowerCase().includes(categoreyName) || categoreyName == "all" || (categoreyName==="bookmark" && bookmarkSet.has(id))){
+                    return(
+                        <Card
+                            bookmarkSet = {bookmarkSet}
+                            handleBookMarks={handleBookMarks} 
+                            year = {year}
+                            category = {category}
+                            rating = {rating}
+                            title = {title}
+                            thumbnail = {thumbnail}
+                            getOMDB={getOMDB}
+                            parentComp = "Trending"
+                            key = {id}
+                            cardID = {id}
+                        />
+                    )
+                }
             }
         })
     }

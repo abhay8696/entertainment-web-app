@@ -6,7 +6,7 @@ import "../../imageUrls.css"
 import Card from '../Card/Card';
 
 const Recommendations = props => {
-    const { dummyData } = props;
+    const { dummyData, categoreyName, handleBookMarks, bookmarkSet  } = props;
 
     //functions
     const displayDummyData = () => {
@@ -15,10 +15,12 @@ const Recommendations = props => {
         
 
         return dummyData.map(item => {
-            if(item){
-                const { year, category, rating, title, thumbnail, id } = item;
+            const { year, category, rating, title, thumbnail, id } = item;
+            if(category?.toLowerCase().includes(categoreyName) || categoreyName == "all" || (categoreyName==="bookmark" && bookmarkSet.has(id))){
                 return(
                     <Card
+                        bookmarkSet = {bookmarkSet}
+                        handleBookMarks={handleBookMarks} 
                         year = {year}
                         category = {category}
                         rating = {rating}
@@ -26,6 +28,7 @@ const Recommendations = props => {
                         thumbnail = {thumbnail}
                         parentComp = {"Recommendations"}
                         key = {id}
+                        cardID = {id}
                     />
                 )
             }
