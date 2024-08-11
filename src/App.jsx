@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './components/navbar/Navbar'
 import AppBody from './components/AppBody/AppBody'
-//data
-import loadDummyData from './initialData.js';
+//functions
+import { localData } from './functions.js';
 
 function App() {
   //states
@@ -18,22 +18,9 @@ function App() {
   //functions
   const onLoad = () => {
     //get dummyData from local
-    let data = window.localStorage.getItem("dummyData");
-    if(data){
-      console.log("dummyData found in local storage");
-      data = JSON.parse(data);
-      console.log(data)
-    }
-    else{//if not found save to local
-      console.log("dummyData not found in local storage, getting from loadDummyData function")
-      data = loadDummyData();
-      console.log("saving data to local storage...")
-      window.localStorage.setItem("dummyData", JSON.stringify(data));
-    }
+    const dataFromLocal = localData();
 
-    //save data as state to pass down as props
-    console.log("storing as state");
-    setDummyData(data);
+    setDummyData(dataFromLocal);
   };
 
   const closeSearch = ()=> {

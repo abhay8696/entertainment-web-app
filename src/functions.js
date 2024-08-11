@@ -1,3 +1,6 @@
+import loadInitialDataWith_UUID from "./initialData"
+
+
 export const transformString = str=> {
     // Capitalize the first letter of each word
     let capitalizedWords = str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1));
@@ -18,4 +21,21 @@ export const string_to_url_string = str =>{
     }
 
     return newStr;
+}
+
+export const localData = () => {
+    //get dummyData from local storage
+    let data = window.localStorage.getItem("dummyData");
+
+    if(data){
+      console.log("dummyData found in local storage");
+      data = JSON.parse(data);
+    }
+
+    else{//if not found save to local
+        data = loadInitialDataWith_UUID(); //dummyData not found in local storage, getting from loadInitialDataWith_UUID function
+        window.localStorage.setItem("dummyData", JSON.stringify(data));
+    }
+
+    return data;
 }

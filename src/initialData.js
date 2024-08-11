@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import data from "./data.json";
 
-const loadInitialData = () => {
+const loadInitialDataWith_UUID = () => {
     if(!data) return [];
 
     return data.map(item => {
@@ -10,4 +10,4 @@ const loadInitialData = () => {
     });
 }
 
-export default loadInitialData;
+export default loadInitialDataWith_UUID;
