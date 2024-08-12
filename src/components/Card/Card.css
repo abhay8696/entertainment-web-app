@@ -37,6 +37,12 @@
     position: absolute;
     top: 12px;
     right: 12px;
+    cursor: pointer;
+    transition: 250ms all;
+}
+
+.cardButton:hover{
+    opacity: 1;
 }
 
 /* all screens above 768px */

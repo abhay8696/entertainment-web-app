@@ -6,6 +6,7 @@ import "../../imageUrls.css"
 import CardTexts from '../CardTexts/CardTexts';
 //assets
 import bookmark from "../../assets/icon-bookmark-outline.svg";
+import bookmarkWhite from "../../assets/icon-bookmark-white-small.svg";
 //helper functions
 import { transformString } from '../../functions';
 
@@ -31,14 +32,6 @@ const Card = props => {
         )
     }
 
-    const handleClickBookMark = () => {
-        console.log(cardID, bookmarkSet)
-        let type;
-        bookmarkSet.has(cardID) ? type = "remove" : type = "add";
-        // console.log(cardID, type)
-        handleBookMarks(cardID, type);
-    }
-
     return (
         <div className='CardWrapper'>
             <div 
@@ -48,8 +41,12 @@ const Card = props => {
                     backgroundImage: poster ? `url(${poster})` : ""
                 }}
             >
-                <span onClick={handleClickBookMark} className='cardButton flex items-center justify-center'>
-                    <img src={bookmark} alt='bookmark' className='nav-icon mx-2'/>
+                <span onClick={()=> handleBookMarks(cardID)} className='cardButton flex items-center justify-center'>
+                    <img 
+                        src={bookmarkSet.has(cardID) ? bookmarkWhite : bookmark} 
+                        alt='bookmark' 
+                        className='nav-icon mx-2'
+                    />
                 </span>
                 {
                     parentComp === "Trending" ? displayInfo("p-3 md:p-5") : null

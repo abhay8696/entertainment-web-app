@@ -21,19 +21,28 @@ function App() {
   //functions
   const onLoad = () => {
     //get dummyData from local
-    const dataFromLocal = localData();
+    const dummyDataFromLocal = localData("dummyData");
+    const bookmarksFromLocal = localData("bookmarks");
 
-    setDummyData(dataFromLocal);
+    setDummyData(dummyDataFromLocal);
+    if(bookmarksFromLocal) setBookmarkSet(new Set(bookmarksFromLocal));
   };
 
   const handleCategoreyName = type => setCategoreyName(type);
 
-  const handleBookMarks = (cardId, type) => {
-    if(type === "add") setBookmarkSet(new Set([...bookmarkSet, cardId]));
-    if(type === "remove"){
-      bookmarkSet.delete(cardId);
-      setBookmarkSet([...bookmarkSet]);
+  const handleBookMarks = (cardId) => {
+    
+    if(bookmarkSet.has(cardId)) bookmarkSet.delete(cardId);
+    else  bookmarkSet.add(cardId);
+    
+    setBookmarkSet(new Set(bookmarkSet));
+
+    // //save bookmarks to local storage
+    const arrOfBookmarks = [];
+    for(let i of bookmarkSet){
+      arrOfBookmarks.push(i);
     }
+    window.localStorage.setItem("bookmarks", JSON.stringify(arrOfBookmarks));
   }
 
   const closeSearch = ()=> {
@@ -57,6 +66,7 @@ function App() {
         dummyData={dummyData} 
         closeSearch={closeSearch} 
         handleSearchItem={handleSearchItem}
+        handleCategoreyName = {handleCategoreyName}
         categoreyName = {categoreyName}
         handleBookMarks={handleBookMarks}
         bookmarkSet={bookmarkSet}

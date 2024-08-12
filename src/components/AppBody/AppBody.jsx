@@ -17,7 +17,7 @@ const omdbUrl = `http://www.omdbapi.com/?apikey=${omdbKey}&page=2`;
 
 
 const AppBody = props => {
-    const { searchedItem, closeSearch, handleSearchItem, dummyData, categoreyName, handleBookMarks, bookmarkSet } = props;
+    const { searchedItem, closeSearch, handleSearchItem, dummyData, categoreyName, handleBookMarks, bookmarkSet, handleCategoreyName } = props;
     //life cycle - on App load
     //functions
     const getOMDB = async ({title, year, type}) => {
@@ -61,7 +61,11 @@ const AppBody = props => {
     return (
         <div className='AppBody text-start flex flex-col gap-6 md:gap-8 pt-14 lg:pt-0 lg:pl-24 my-6 md:my-8'>
             <div className='px-4 md:px-0 lg:px-9'>
-                <SearchComp getOMDB={getOMDB} handleSearchItem={handleSearchItem}/>
+                <SearchComp 
+                    getOMDB={getOMDB} 
+                    handleSearchItem={handleSearchItem}
+                    handleCategoreyName={handleCategoreyName}
+                />
             </div>
             {
                 searchedItem.found 

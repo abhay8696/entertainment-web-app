@@ -23,18 +23,19 @@ export const string_to_url_string = str =>{
     return newStr;
 }
 
-export const localData = () => {
-    //get dummyData from local storage
-    let data = window.localStorage.getItem("dummyData");
+export const localData = (dataName) => {
+    //dataName = dummyData / bookmarks
+    //get dummyData/bookmarks from local storage
+    let data = window.localStorage.getItem(dataName);
 
     if(data){
-      console.log("dummyData found in local storage");
+      console.log("dummyData/bookmarks found in local storage");
       data = JSON.parse(data);
     }
 
     else{//if not found save to local
         data = loadInitialDataWith_UUID(); //dummyData not found in local storage, getting from loadInitialDataWith_UUID function
-        window.localStorage.setItem("dummyData", JSON.stringify(data));
+        window.localStorage.setItem(dataName, JSON.stringify(data));
     }
 
     return data;
