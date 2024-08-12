@@ -6,7 +6,7 @@ import "../../imageUrls.css"
 import Card from '../Card/Card';
 
 const Recommendations = props => {
-    const { dummyData, categoreyName, handleBookMarks, bookmarkSet  } = props;
+    const { dummyData, categoreyName, handleBookMarks, bookmarkMap  } = props;
 
     //functions
     const displayDummyData = () => {
@@ -16,10 +16,10 @@ const Recommendations = props => {
 
         return dummyData.map(item => {
             const { year, category, rating, title, thumbnail, id } = item;
-            if(category?.toLowerCase().includes(categoreyName) || categoreyName == "all" || (categoreyName==="bookmark" && bookmarkSet.has(id))){
+            if(category?.toLowerCase().includes(categoreyName) || categoreyName == "all" || (categoreyName==="bookmark" && bookmarkMap.get(id))){
                 return(
                     <Card
-                        bookmarkSet = {bookmarkSet}
+                        bookmarkMap = {bookmarkMap}
                         handleBookMarks={handleBookMarks} 
                         year = {year}
                         category = {category}
@@ -29,9 +29,39 @@ const Recommendations = props => {
                         parentComp = {"Recommendations"}
                         key = {id}
                         cardID = {id}
+                        allData = {item}
                     />
                 )
             }
+        })
+    }
+
+    const displayBookmarkCards = () => {
+        const newArr = Array.from(bookmarkMap);
+
+        console.log(newArr)
+        return newArr.map(item => {
+            let { year, category, rating, title, thumbnail, id } = item[1];
+            let { original_title, overview, popularity, media_type, poster_path, release_date, vote_average } = item[1];
+            
+            release_date ? release_date = release_date.split("-")[0] : null;
+            poster_path ? poster_path = `https://image.tmdb.org/t/p/w220_and_h330_face${poster_path}` : null;
+
+            return(
+                <Card
+                    bookmarkMap = {bookmarkMap}
+                    handleBookMarks={handleBookMarks} 
+                    year = {year || release_date}
+                    category = {category || media_type}
+                    rating = {rating || vote_average}
+                    title = {title || original_title}
+                    poster = {thumbnail || poster_path}
+                    parentComp = {"SearchResult"}
+                    key = {id}
+                    cardID = {id}
+                    allData = {item}
+                />
+            )
         })
     }
 
@@ -39,7 +69,7 @@ const Recommendations = props => {
         <>
         <h1>{categoreyName !== "bookmark" ? "Recommended for you" : "Bookmarks"}</h1>
         <div className='flex gap-4 recomCardGrid grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
-            {displayDummyData()}
+            {categoreyName !== "bookmark" ? displayDummyData() : displayBookmarkCards()}
         </div>
         </>
     );

@@ -5,12 +5,14 @@ import "./SearchComp.css";
 import searchIcon from "../../assets/icon-search.svg";
 
 const SearchComp = props => {
-    const { getTMDB, handleSearchItem, handleCategoreyName } = props;
+    const { getTMDB, handleSearchItem, handleCategoreyName, categoreyName } = props;
     //states 
     const [text, setText] = useState("");
     //functions
     const handleChange = evt => {
         setText(pre=> evt.target.value);
+        if(categoreyName !== "all") handleCategoreyName("all");
+
         if(!evt.target.value.length){
             handleSearchItem(null);
             // handleCategoreyName("all");

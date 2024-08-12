@@ -12,7 +12,7 @@ function App() {
   const [searchedItem, setSearchedItem] = useState(null);
   const [dummyData, setDummyData] = useState(); //this data is displayed on Trending and Recommendations sections
   const [categoreyName, setCategoreyName] = useState("all");
-  const [bookmarkSet, setBookmarkSet] = useState(new Set());
+  const [bookmarkMap, setBookmarkMap] = useState(new Map());
   //on 1s load
   useEffect(()=> {
       onLoad();
@@ -25,25 +25,21 @@ function App() {
     const bookmarksFromLocal = localData("bookmarks");
 
     setDummyData(dummyDataFromLocal);
-    if(bookmarksFromLocal) setBookmarkSet(new Set(bookmarksFromLocal));
+    if(bookmarksFromLocal) setBookmarkMap(new Map(bookmarksFromLocal));
 
   };
 
   const handleCategoreyName = type => setCategoreyName(type);
 
-  const handleBookMarks = (cardId) => {
+  const handleBookMarks = (id, data) => {
     
-    if(bookmarkSet.has(cardId)) bookmarkSet.delete(cardId);
-    else  bookmarkSet.add(cardId);
+    if(bookmarkMap.has(id)) bookmarkMap.delete(id);
+    else  bookmarkMap.set(id, data);
     
-    setBookmarkSet(new Set(bookmarkSet));
+    setBookmarkMap(new Map(bookmarkMap));
 
-    // //save bookmarks to local storage
-    const arrOfBookmarks = [];
-    for(let i of bookmarkSet){
-      arrOfBookmarks.push(i);
-    }
-    window.localStorage.setItem("bookmarks", JSON.stringify(arrOfBookmarks));
+    // //save bookmarks to local storage by converting map into arr 
+    window.localStorage.setItem("bookmarks", JSON.stringify(Array.from(bookmarkMap)));
   }
 
   const closeSearch = ()=> {
@@ -70,7 +66,7 @@ function App() {
         handleCategoreyName = {handleCategoreyName}
         categoreyName = {categoreyName}
         handleBookMarks={handleBookMarks}
-        bookmarkSet={bookmarkSet}
+        bookmarkMap={bookmarkMap}
       />
     </>
   )

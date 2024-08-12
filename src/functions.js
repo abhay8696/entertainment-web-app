@@ -35,7 +35,8 @@ export const localData = (dataName) => {
       data = JSON.parse(data);
     }
 
-    else{//if not found save to local
+    else if(dataName == "dummyData"){//if not found save to local
+
         data = loadInitialDataWith_UUID(); //dummyData not found in local storage, getting from loadInitialDataWith_UUID function
         window.localStorage.setItem(dataName, JSON.stringify(data));
     }
@@ -53,12 +54,13 @@ export const fetchPopular = async (type) => {
 }
 
 export const fetchByName = async (title, category) => {
-    category === "all" ? category = "multi" : null;
+    // category === "all" || category === "bookmark" ? category = "multi" : null;
     
     const tmdbToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZTc5MWRmZDNhNTUzMmUzMGQwY2UxOGM2MzM4NzI5NiIsIm5iZiI6MTcyMzQ1NjI4OC41NTk2NDksInN1YiI6IjY2YjljNTk1MWNmNzA2OTIwMmI3NWZkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.J6w5-fCvVFR5PXvHT-Gona7jPfP3leYc3xGRVb4PAF4";
     const options = {
         method: 'GET',
-        url: `https://api.themoviedb.org/3/search/${category}`,
+        // url: `https://api.themoviedb.org/3/search/${category}`,
+        url: `https://api.themoviedb.org/3/search/multi`,
         params: {query: title, language: 'en-US', page: '1'},
         headers: {
           accept: 'application/json',

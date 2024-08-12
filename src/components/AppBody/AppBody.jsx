@@ -17,7 +17,7 @@ const omdbUrl = `http://www.omdbapi.com/?apikey=${omdbKey}&page=2`;
 
 
 const AppBody = props => {
-    const { searchedItem, closeSearch, handleSearchItem, dummyData, categoreyName, handleBookMarks, bookmarkSet, handleCategoreyName } = props;
+    const { searchedItem, closeSearch, handleSearchItem, dummyData, categoreyName, handleBookMarks, bookmarkMap, handleCategoreyName } = props;
     //life cycle - on App load
     //functions
     const getTMDB = async (title) => {
@@ -31,6 +31,7 @@ const AppBody = props => {
                     handleSearchItem={handleSearchItem}
                     handleCategoreyName={handleCategoreyName}
                     getTMDB={getTMDB}
+                    categoreyName={categoreyName}
                 />
             </div>
             {
@@ -38,7 +39,7 @@ const AppBody = props => {
                 ?
                     <div className='trendingDiv flex flex-col gap-4 px-4 md:px-0 lg:px-9'>
                         <SearchResult 
-                            bookmarkSet={bookmarkSet}
+                            bookmarkMap={bookmarkMap}
                             handleBookMarks={handleBookMarks} 
                             data={searchedItem}
                             categoreyName={categoreyName}
@@ -51,7 +52,7 @@ const AppBody = props => {
                         dummyData && categoreyName !== "bookmark"
                         ? 
                         <Trending 
-                            bookmarkSet={bookmarkSet}
+                            bookmarkMap={bookmarkMap}
                             handleBookMarks={handleBookMarks} 
                             categoreyName={categoreyName} 
                             dummyData={dummyData} 
@@ -65,7 +66,7 @@ const AppBody = props => {
                         dummyData 
                         ? 
                         <Recommendations 
-                            bookmarkSet={bookmarkSet}
+                            bookmarkMap={bookmarkMap}
                             handleBookMarks={handleBookMarks} 
                             categoreyName={categoreyName} 
                             dummyData={dummyData}
