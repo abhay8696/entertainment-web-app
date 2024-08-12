@@ -32,6 +32,7 @@ const AppBody = props => {
                     handleCategoreyName={handleCategoreyName}
                     getTMDB={getTMDB}
                     categoreyName={categoreyName}
+                    searchedItem={searchedItem}
                 />
             </div>
             {

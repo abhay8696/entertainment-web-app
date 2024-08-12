@@ -45,7 +45,7 @@ const Recommendations = props => {
             if(!item) return <></>
             if(!item[0] || !item[1]) return <></>
             let { year, category, rating, title, thumbnail, id } = item[1];
-            let { original_title, overview, popularity, media_type, poster_path, release_date, vote_average } = item[1];
+            let { original_title, overview, popularity, media_type, poster_path, release_date, vote_average, original_name, name } = item[1];
             
             release_date ? release_date = release_date.split("-")[0] : null;
             poster_path ? poster_path = `https://image.tmdb.org/t/p/w220_and_h330_face${poster_path}` : null;
@@ -57,7 +57,7 @@ const Recommendations = props => {
                     year = {year || release_date}
                     category = {category || media_type}
                     rating = {rating || vote_average}
-                    title = {title || original_title}
+                    title = {title || original_title || original_name || name}
                     poster = {thumbnail || poster_path}
                     parentComp = {"SearchResult"}
                     key = {id}

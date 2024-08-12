@@ -41,8 +41,10 @@ const Trending = props => {
     return (
         <>
             <h1 >Trending</h1>
-            <div className='flex gap-4 trendCardGrid'>
+            <div className='flex gap-4 trendCardGrid '>
+            {/* <marquee> */}
                 {displayDummyData()}
+            {/* </marquee> */}
             </div>
         </>
     );

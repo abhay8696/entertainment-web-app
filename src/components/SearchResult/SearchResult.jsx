@@ -10,6 +10,7 @@ const SearchResult = props => {
     //functions
     const displayCards = () => {
         if(!data) return [];
+        console.log(data)
         return data
         .filter(item => {
             if (categoreyName === "all") {
@@ -56,7 +57,7 @@ const SearchResult = props => {
                         parentComp = "SearchResult"
                         cardID = {imdbID}
                 /> */}
-                {displayCards()}
+                {data ? displayCards() : null}
             </div>
         </>
     );

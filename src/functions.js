@@ -31,7 +31,7 @@ export const localData = (dataName) => {
     let data = window.localStorage.getItem(dataName);
 
     if(data){
-      console.log("dummyData/bookmarks found in local storage");
+    //   console.log("dummyData/bookmarks found in local storage");
       data = JSON.parse(data);
     }
 

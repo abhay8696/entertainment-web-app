@@ -29,7 +29,10 @@ function App() {
 
   };
 
-  const handleCategoreyName = type => setCategoreyName(type);
+  const handleCategoreyName = type => {
+    if(type === "bookmark") setSearchedItem(null);
+    setCategoreyName(type);
+  }
 
   const handleBookMarks = (id, data) => {
     
@@ -43,7 +46,8 @@ function App() {
   }
 
   const closeSearch = ()=> {
-    setSearchedItem({found: false});
+    setSearchedItem(null);
+    setCategoreyName("all");
   }
   
   const handleSearchItem = (data) => {
