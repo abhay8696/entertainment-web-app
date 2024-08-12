@@ -39,7 +39,8 @@ const Recommendations = props => {
     const displayBookmarkCards = () => {
         const newArr = Array.from(bookmarkMap);
 
-        console.log(newArr)
+        if(!newArr.length) return [<p>{"No Bookmarks :("}</p>];
+
         return newArr.map(item => {
             let { year, category, rating, title, thumbnail, id } = item[1];
             let { original_title, overview, popularity, media_type, poster_path, release_date, vote_average } = item[1];
