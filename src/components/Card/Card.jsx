@@ -11,7 +11,7 @@ import bookmarkWhite from "../../assets/icon-bookmark-white-small.svg";
 import { transformString } from '../../functions';
 
 const Card = props => {
-    const { year, category, rating, title, noData, thumbnail, trendImg, poster, parentComp, bookmarkSet, handleBookMarks, cardID } = props;
+    const { allData, year, category, rating, title, noData, thumbnail, trendImg, poster, parentComp, bookmarkSet, handleBookMarks, cardID } = props;
 
     let cardTitle = title;
 
@@ -40,6 +40,7 @@ const Card = props => {
                 style={{
                     backgroundImage: poster ? `url(${poster})` : ""
                 }}
+                onClick={()=> console.log(allData)}
             >
                 <span onClick={()=> handleBookMarks(cardID)} className='cardButton flex items-center justify-center'>
                     <img 

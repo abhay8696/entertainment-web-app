@@ -3,13 +3,13 @@ import './App.css'
 import Navbar from './components/navbar/Navbar'
 import AppBody from './components/AppBody/AppBody'
 //functions
-import { localData } from './functions.js';
+import { fetchPopular, localData } from './functions.js';
 
 const filterArr = ["all", "movie", "tv", "bookmark"];
 
 function App() {
   //states
-  const [searchedItem, setSearchedItem] = useState({ found: false });
+  const [searchedItem, setSearchedItem] = useState(null);
   const [dummyData, setDummyData] = useState(); //this data is displayed on Trending and Recommendations sections
   const [categoreyName, setCategoreyName] = useState("all");
   const [bookmarkSet, setBookmarkSet] = useState(new Set());
@@ -19,13 +19,14 @@ function App() {
   }, []);
 
   //functions
-  const onLoad = () => {
+  const onLoad = async () => {
     //get dummyData from local
     const dummyDataFromLocal = localData("dummyData");
     const bookmarksFromLocal = localData("bookmarks");
 
     setDummyData(dummyDataFromLocal);
     if(bookmarksFromLocal) setBookmarkSet(new Set(bookmarksFromLocal));
+
   };
 
   const handleCategoreyName = type => setCategoreyName(type);
@@ -49,7 +50,7 @@ function App() {
     setSearchedItem({found: false});
   }
   
-  const handleSearchItem = data => {
+  const handleSearchItem = (data) => {
     setSearchedItem(data);
   }
 

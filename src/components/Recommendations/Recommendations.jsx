@@ -37,7 +37,7 @@ const Recommendations = props => {
 
     return (
         <>
-        <h1 >Recommended for you</h1>
+        <h1>{categoreyName !== "bookmark" ? "Recommended for you" : "Bookmarks"}</h1>
         <div className='flex gap-4 recomCardGrid grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
             {displayDummyData()}
         </div>

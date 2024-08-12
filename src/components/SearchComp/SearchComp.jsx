@@ -5,20 +5,20 @@ import "./SearchComp.css";
 import searchIcon from "../../assets/icon-search.svg";
 
 const SearchComp = props => {
-    const { getOMDB, handleSearchItem, handleCategoreyName } = props;
+    const { getTMDB, handleSearchItem, handleCategoreyName } = props;
     //states 
     const [text, setText] = useState("");
     //functions
     const handleChange = evt => {
         setText(pre=> evt.target.value);
         if(!evt.target.value.length){
-            handleSearchItem({found: false});
-            handleCategoreyName("all");
+            handleSearchItem(null);
+            // handleCategoreyName("all");
         }
     }
     const handleSubmit = evt => {
         evt.preventDefault();
-        getOMDB({title: text});
+        getTMDB(text);
     }
     
     return (
