@@ -42,6 +42,8 @@ const Recommendations = props => {
         if(!newArr.length) return [<p>{"No Bookmarks :("}</p>];
 
         return newArr.map(item => {
+            if(!item) return <></>
+            if(!item[0] || !item[1]) return <></>
             let { year, category, rating, title, thumbnail, id } = item[1];
             let { original_title, overview, popularity, media_type, poster_path, release_date, vote_average } = item[1];
             
