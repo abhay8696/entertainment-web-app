@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 //styles
 import "./SearchComp.css";
 //assets
@@ -8,6 +8,8 @@ const SearchComp = props => {
     const { getTMDB, handleSearchItem, handleCategoreyName, categoreyName } = props;
     //states 
     const [text, setText] = useState("");
+    //refs
+    const inputRef = useRef(null);
     //functions
     const handleChange = evt => {
         setText(pre=> evt.target.value);
@@ -21,6 +23,7 @@ const SearchComp = props => {
     const handleSubmit = evt => {
         evt.preventDefault();
         getTMDB(text);
+        if(inputRef.current) inputRef.current.blur();
     }
     
     return (
@@ -29,6 +32,7 @@ const SearchComp = props => {
                 <img src={searchIcon} alt='search icon' className='searchIcon w-7' />
             </label>
             <input 
+                ref={inputRef}
                 className='searchInput flex-1 py-2' 
                 onChange={handleChange}
                 value={text}
