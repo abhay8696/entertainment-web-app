@@ -11,7 +11,7 @@ import bookmarkWhite from "../../assets/icon-bookmark-white-small.svg";
 import { transformString } from '../../functions';
 
 const Card = props => {
-    const { allData, year, category, rating, title, noData, thumbnail, trendImg, poster, parentComp, bookmarkMap, handleBookMarks, cardID } = props;
+    const { allData, year, category, rating, title, noData, thumbnail, trendImg, poster, parentComp, bookmarkMap, handleBookMarks, cardID, customClassName } = props;
 
     let cardTitle = title;
 
@@ -33,7 +33,7 @@ const Card = props => {
     }
 
     return (
-        <div className='CardWrapper'>
+        <div className={`CardWrapper ${customClassName}`}>
             <div 
                 className={`Card flex ${parentComp}-card`}
                 id = {`${transformString(cardTitle)}-small`} //remove spaces nad special characters

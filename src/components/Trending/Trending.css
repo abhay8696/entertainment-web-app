@@ -2,10 +2,35 @@
 .trendingDiv{
 }
 
-.trendCardGrid{
-    overflow-x: scroll;
+marquee{
 }
 
+.trendCardGrid{
+    /* overflow-x: scroll; */
+}
+
+.trendingDiv marquee{
+    /* background-color: rebeccapurple; */
+}
+
+.trendCard-1{
+    margin-left: 1rem;
+}
+
+.trendCard-5{
+    margin-right: 1rem;
+}
+
+/* all screens above 768px */
+@media screen and (min-width: 768px) and (max-width: 1024px){
+    .trendCardGrid{
+        /* width: calc(100vw); */
+        margin-left: -1rem;
+    }  
+    marquee{
+        margin: 0 -1rem;
+    }
+}
 
 /* all screens above 1024px */
 @media screen and (min-width: 1024px) {
@@ -14,6 +39,15 @@
         /* max-width: 500px; */
     }  
     .trendCardGrid{
-        width: calc(100% + 7.5rem);
+        /* width: calc(100% + 5.5rem); */
     }  
+    .trendCard-1{
+        margin-left: 36px;
+    }
+    .trendCard-5{
+        margin-right: 3rem;
+    }
+    marquee{
+        width: calc(100vw - 2rem - 72px);
+    }
 }

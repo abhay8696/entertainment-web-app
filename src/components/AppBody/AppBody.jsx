@@ -48,7 +48,7 @@ const AppBody = props => {
                     </div>
                 :
                 <>
-                    <div className='trendingDiv flex flex-col gap-4 px-4 md:px-0 lg:px-9'>
+                    <div className='trendingDiv flex flex-col gap-4 md:px-0 '>
                         {
                         dummyData && categoreyName !== "bookmark"
                         ? 
