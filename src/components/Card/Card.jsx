@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 //styles
 import "./Card.css";
 import "../../imageUrls.css"
 //components
 import CardTexts from '../CardTexts/CardTexts';
+//context
+import { ModalContext } from '../../contexts/AllContexts';
 //assets
 import bookmark from "../../assets/icon-bookmark-outline.svg";
 import bookmarkWhite from "../../assets/icon-bookmark-white-small.svg";
@@ -11,8 +13,12 @@ import bookmarkWhite from "../../assets/icon-bookmark-white-small.svg";
 import { transformString } from '../../functions';
 
 const Card = props => {
+    //props
     const { allData, year, category, rating, title, noData, thumbnail, trendImg, poster, parentComp, bookmarkMap, handleBookMarks, cardID, customClassName } = props;
 
+    //contexts
+    const [Modal, SetModal] = useContext(ModalContext);
+    //varaibles
     let cardTitle = title;
 
     title === "1998" ? cardTitle = "NinteenNightyEight" : null;
@@ -40,7 +46,7 @@ const Card = props => {
                 style={{
                     backgroundImage: poster ? `url(${poster})` : ""
                 }}
-                onClick={()=> console.log(allData)}
+                onClick={()=> SetModal({position: "up" , data: allData})}
             >
                 <span 
                     onClick={()=> handleBookMarks(cardID, allData)} className='cardButton flex items-center justify-center'

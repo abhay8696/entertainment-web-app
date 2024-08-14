@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+//Components
 import Navbar from './components/navbar/Navbar'
 import AppBody from './components/AppBody/AppBody'
+//contexts
+import { ModalContext } from './contexts/AllContexts.js'
 //functions
 import { fetchPopular, localData } from './functions.js';
+import ModalComp from './components/ModalComp/ModalComp.jsx'
 
 const filterArr = ["all", "movie", "tv", "bookmark"];
 
@@ -13,6 +17,7 @@ function App() {
   const [dummyData, setDummyData] = useState(); //this data is displayed on Trending and Recommendations sections
   const [categoreyName, setCategoreyName] = useState("all");
   const [bookmarkMap, setBookmarkMap] = useState(new Map());
+  const [Modal, SetModal] = useState({position: "initial", data: {}});
   //on 1s load
   useEffect(()=> {
       onLoad();
@@ -55,7 +60,7 @@ function App() {
   }
 
   return (
-    <>
+    <ModalContext.Provider value={[Modal, SetModal]}>
       <Navbar 
         searchedItem={searchedItem} 
         closeSearch={closeSearch}
@@ -63,16 +68,17 @@ function App() {
         categoreyName = {categoreyName}
       />
       <AppBody 
-        searchedItem={searchedItem} 
         dummyData={dummyData} 
+        searchedItem={searchedItem} 
         closeSearch={closeSearch} 
         handleSearchItem={handleSearchItem}
-        handleCategoreyName = {handleCategoreyName}
         categoreyName = {categoreyName}
-        handleBookMarks={handleBookMarks}
+        handleCategoreyName = {handleCategoreyName}
         bookmarkMap={bookmarkMap}
+        handleBookMarks={handleBookMarks}
       />
-    </>
+      <ModalComp />
+    </ModalContext.Provider>
   )
 }
 

@@ -1,0 +1,41 @@
+
+.ModalComp-wrapper{
+    position: absolute;
+    background-color: black;
+    opacity: 0.7;
+    top: 100%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
+}
+
+.ModalComp-wrapper-up{
+    animation: riseUp 500ms forwards;
+}
+
+.ModalComp-wrapper-down{
+    animation: fallDown 500ms forwards;
+}
+
+.ModalComp-wrapper-initial{
+    top: 100%;
+}
+
+@keyframes riseUp {
+    from{
+        top: 100%;
+    }
+    to{
+        top: 0;
+    }
+}
+
+@keyframes fallDown {
+    from{
+        top: 0;
+    }
+    to{
+        top: 100%;
+    }
+}
