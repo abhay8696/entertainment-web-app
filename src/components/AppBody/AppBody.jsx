@@ -17,7 +17,7 @@ const omdbUrl = `http://www.omdbapi.com/?apikey=${omdbKey}&page=2`;
 
 
 const AppBody = props => {
-    const { searchedItem, closeSearch, handleSearchItem, dummyData, categoreyName, handleBookMarks, bookmarkMap, handleCategoreyName } = props;
+    const { TMDB_recommended, TMDB_trending, searchedItem, closeSearch, handleSearchItem, dummyData, categoreyName, handleBookMarks, bookmarkMap, handleCategoreyName } = props;
     //life cycle - on App load
     //functions
     const getTMDB = async (title) => {
@@ -25,7 +25,7 @@ const AppBody = props => {
         handleSearchItem(data);
     }
     return (
-        <div className='AppBody text-start flex flex-col gap-6 md:gap-8 pt-14 lg:pt-0 lg:pl-24 my-6 md:my-8'>
+        <div id='AppBody' className='AppBody text-start flex flex-col gap-6 md:gap-8 pt-14 lg:pt-0 lg:pl-24 my-6 md:my-8'>
             <div className='px-4 md:px-0 lg:px-9'>
                 <SearchComp 
                     handleSearchItem={handleSearchItem}
@@ -57,6 +57,7 @@ const AppBody = props => {
                             handleBookMarks={handleBookMarks} 
                             categoreyName={categoreyName} 
                             dummyData={dummyData} 
+                            TMDB_trending={TMDB_trending}
                         /> 
                             
                         : 
@@ -71,6 +72,7 @@ const AppBody = props => {
                             handleBookMarks={handleBookMarks} 
                             categoreyName={categoreyName} 
                             dummyData={dummyData}
+                            TMDB_recommended={TMDB_recommended}
                         /> 
                         : 
                         null}

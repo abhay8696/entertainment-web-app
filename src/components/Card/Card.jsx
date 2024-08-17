@@ -46,7 +46,8 @@ const Card = props => {
                 style={{
                     backgroundImage: poster ? `url(${poster})` : ""
                 }}
-                onClick={()=> SetModal({position: "up" , data: allData})}
+                // onClick={()=> SetModal({position: "up" , data: allData})}
+                onClick={()=> console.log(allData)}
             >
                 <span 
                     onClick={()=> handleBookMarks(cardID, allData)} className='cardButton flex items-center justify-center'

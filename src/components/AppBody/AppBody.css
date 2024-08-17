@@ -2,3 +2,7 @@
 .AppBody{
     flex: 1;
 }
+
+.disableScroll{
+    overflow: hidden;
+}

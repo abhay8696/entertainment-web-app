@@ -5,8 +5,10 @@ import "../../imageUrls.css"
 //components
 import Card from '../Card/Card';
 
+const dummyImg = "https://imgs.search.brave.com/QrrF8yctvnxGKn5UBvuEt1XL7Pv04zXmzQ0y50RN5cY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA3LzkxLzIyLzU5/LzM2MF9GXzc5MTIy/NTkyN19jYVJQUEg5/OUQ2RDFpRm9ua0NS/bUNHemtKUGYzNlFE/dy5qcGc";
+
 const Recommendations = props => {
-    const { dummyData, categoreyName, handleBookMarks, bookmarkMap  } = props;
+    const { TMDB_recommended, dummyData, categoreyName, handleBookMarks, bookmarkMap  } = props;
 
     //functions
     const displayDummyData = () => {
@@ -62,7 +64,50 @@ const Recommendations = props => {
                     parentComp = {"SearchResult"}
                     key = {id}
                     cardID = {id}
-                    allData = {item}
+                    allData = {item[1]}
+                />
+            )
+        })
+    }
+
+    const displayTMDB_cards = () => {
+        if(!TMDB_recommended) return displayDummyData();
+
+        let arr = [];
+
+        if(categoreyName === "all"){    //mix movie and tv data
+            for(let i = 0; i < TMDB_recommended.movie.length; i++){
+                if(i % 2){
+                    arr.push(TMDB_recommended.movie[i]);
+                    arr[i].media_type = "movie";
+                }
+                else{
+                    arr.push(TMDB_recommended.tv[i]);
+                    arr[i].media_type = "tv";
+                }
+            }
+        }else arr = TMDB_recommended[`${categoreyName}`];
+
+        return arr.map(item => {
+            let { id, original_title, overview, popularity, media_type, backdrop_path, poster_path, release_date, first_air_date, title, vote_average, original_name, name } = item;
+            
+            poster_path ? poster_path = `https://image.tmdb.org/t/p/w220_and_h330_face${poster_path}` : poster_path = dummyImg;
+            let year;
+            release_date ? year = release_date : year = first_air_date;
+            return(
+                <Card
+                    bookmarkMap = {bookmarkMap}
+                    handleBookMarks={handleBookMarks} 
+                    year = {year?.split("-")?.[0]}
+                    category = {media_type}
+                    rating = {vote_average}
+                    title = {original_title || title || name || original_name}
+                    thumbnail = {poster_path || backdrop_path}
+                    poster = {poster_path}
+                    parentComp = "Recommendations"
+                    key = {id}
+                    cardID = {id}
+                    allData= {item}
                 />
             )
         })
@@ -72,7 +117,7 @@ const Recommendations = props => {
         <>
         <h1>{categoreyName !== "bookmark" ? "Recommended for you" : "Bookmarks"}</h1>
         <div className='flex gap-4 recomCardGrid grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
-            {categoreyName !== "bookmark" ? displayDummyData() : displayBookmarkCards()}
+            {categoreyName !== "bookmark" ? displayTMDB_cards() : displayBookmarkCards()}
         </div>
         </>
     );

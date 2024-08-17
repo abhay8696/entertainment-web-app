@@ -6,7 +6,7 @@ import AppBody from './components/AppBody/AppBody'
 //contexts
 import { ModalContext } from './contexts/AllContexts.js'
 //functions
-import { fetchPopular, localData } from './functions.js';
+import { fetchTopRated, fetchTrending, localData } from './functions.js';
 import ModalComp from './components/ModalComp/ModalComp.jsx'
 
 const filterArr = ["all", "movie", "tv", "bookmark"];
@@ -18,10 +18,18 @@ function App() {
   const [categoreyName, setCategoreyName] = useState("all");
   const [bookmarkMap, setBookmarkMap] = useState(new Map());
   const [Modal, SetModal] = useState({position: "initial", data: {}});
+  const [TMDB_trending, SetTMDB_trending] = useState();
+  const [TMDB_recommended, SetTMDB_recommended] = useState();
   //on 1s load
   useEffect(()=> {
       onLoad();
   }, []);
+
+  useEffect(()=> {
+    const appBody = document.getElementById("AppBody");
+    if(Modal.position === "up") appBody.classList.add("disableScroll");
+    else appBody.classList.remove("disableScroll");
+  }, [Modal])
 
   //functions
   const onLoad = async () => {
@@ -31,6 +39,15 @@ function App() {
 
     setDummyData(dummyDataFromLocal);
     if(bookmarksFromLocal) setBookmarkMap(new Map(bookmarksFromLocal));
+
+    const all = await fetchTrending("all");
+    const movie = await fetchTrending("movie");
+    const tv = await fetchTrending("tv");
+    const recommendedMovies = await fetchTopRated("movie");
+    const recommendedTV = await fetchTopRated("tv");
+
+    if(all && movie && tv) SetTMDB_trending({all, movie, tv});
+    if(recommendedMovies && recommendedTV) SetTMDB_recommended({tv: recommendedTV, movie: recommendedMovies});
 
   };
 
@@ -76,8 +93,10 @@ function App() {
         handleCategoreyName = {handleCategoreyName}
         bookmarkMap={bookmarkMap}
         handleBookMarks={handleBookMarks}
+        TMDB_trending={TMDB_trending}
+        TMDB_recommended={TMDB_recommended}
       />
-      <ModalComp />
+      {/* <ModalComp /> */}
     </ModalContext.Provider>
   )
 }
