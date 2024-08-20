@@ -3,15 +3,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ModalContext } from '../../contexts/AllContexts';
 //styles
 import "./ModalComp.css";
-import { fetchByID, fetchCreditsById } from '../../tmdb_functions';
+import { fetchByID, fetchDetailsBy_type } from '../../tmdb_functions';
+//components
 import Card from '../Card/Card';
 import Casting from '../Casting/Casting';
+import Videos from '../Videos/Videos';
 
 const ModalComp = () => {
 
     //states
     const [moreData, setMoreData] = useState(null);
-    const [cast, setCast] = useState([]);
+    const [cast, setCast] = useState(null);
+    const [videos, setVideos] = useState(null);
     //contexts
     const [Modal, SetModal] = useContext(ModalContext);
     
@@ -30,10 +33,12 @@ const ModalComp = () => {
     const load = async () => {
         const { id, media_type } = Modal.data;
         const moreDetails = await fetchByID(id, media_type);
-        const credits = await fetchCreditsById(id, media_type);
+        const credits = await fetchDetailsBy_type(id, media_type, "casting");
+        const videos = await fetchDetailsBy_type(id, media_type, "videos");
 
         setMoreData(moreDetails);
         setCast(credits.cast);
+        setVideos(videos.results)
     }
     const toggleModal = () => {
         SetModal({...Modal, position: "down"})
@@ -101,9 +106,11 @@ const ModalComp = () => {
                 
                 <p className='modalOverview md:hidden'>{overview}</p>
                 {
-                    cast?.length ? <Casting cast = {cast} /> : null
+                    cast ? <Casting cast = {cast} /> : null
                 }
-                <MoreData />
+                {
+                    videos ? <Videos videos={videos}/> : null
+                }
             </div>
         </div>
     );

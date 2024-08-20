@@ -89,16 +89,18 @@ export const fetchByName = async (title, category) => {
     }
 }
 
-export const fetchCreditsById = async (id, category) => {
+export const fetchDetailsBy_type = async (id, category, type) => {
     //get from local
-    const details = localStorage.getItem(`casting-${category}-${id}`);
+    const details = localStorage.getItem(`type-${category}-${id}`);
     if(details) return JSON.parse(details);
 
     //if not found get from api
 
+    if(type === "casting") type = "credits";
+
     const options = {
         method: 'GET',
-        url: `https://api.themoviedb.org/3/${category}/${id}/credits?language=en-US`,
+        url: `https://api.themoviedb.org/3/${category}/${id}/${type}?language=en-US`,
         headers: {
           accept: 'application/json',
           Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZTc5MWRmZDNhNTUzMmUzMGQwY2UxOGM2MzM4NzI5NiIsIm5iZiI6MTcyMzkwNjU4Ny42NDY4NzYsInN1YiI6IjY2YjljNTk1MWNmNzA2OTIwMmI3NWZkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.qy_CGEc1GSrg0MRHMj7PJuXbUjj5enwZ5CgHBNVZ_dc'
@@ -107,7 +109,7 @@ export const fetchCreditsById = async (id, category) => {
 
     try {
         const res = await axios.request(options);
-        localStorage.setItem(`casting-${category}-${id}`, JSON.stringify(res.data));
+        localStorage.setItem(`${type}-${category}-${id}`, JSON.stringify(res.data));
         
         return res.data
     } catch (error) {

@@ -41,3 +41,16 @@ export const localData = (dataName) => {
 
     return data;
 }
+
+export const trim_string = (str, len=20) => {
+    let result = "";
+    if(!str) return str;
+
+    if(str.length <= len) return str;
+
+    for(let i = 0; i < len; i++){
+        result = result.concat(str[i]);
+    }
+
+    return `${result}...`;
+}
