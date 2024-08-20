@@ -1,20 +1,26 @@
 
 .ModalComp-wrapper{
     position: fixed;
-    background-color: var(--color-dark-blue);
     top: 100vh;
+    bottom: 0;
     right: 0;
     left: 0;
-    bottom: 0;
     z-index: 20;
+    background-color: var(--color-dark-blue);
+    overflow-y: auto !important;
+}
+.Modal{
+    min-height: calc(100vh - 56px); /*screen height - navbar height*/
+    width: 100%;
+    color: #ffffff93;
 }
 
 .ModalComp-wrapper-up{
-    animation: riseUp 500ms forwards;
+    animation: riseUp-mobile 500ms forwards;
 }
 
 .ModalComp-wrapper-down{
-    animation: fallDown 500ms forwards;
+    animation: fallDown-mobile 500ms forwards;
 }
 
 .ModalComp-wrapper-initial{
@@ -22,18 +28,127 @@
 }
 
 .modalPoster{
+    width: 200px;
+}
+.modalPoster-big{
+    display: none;
 }
 
-@keyframes riseUp {
+.modalHead{
+    padding-left:  1rem;
+    padding-right:  1rem;
+    background-color: #161d2f5e;
+}
+.modalHead h3{
+    line-height: 100%;
+    color: #ffffff;
+}
+.modalTagline{
+}
+
+/* all screens below 768px */
+@media screen and (max-width: 768px) {
+    .ModalComp-wrapper{
+        min-height: calc(100vh - 56px - 16px); /*screen height - navbar height - padding top*/
+    }
+    .modalHead{
+        margin-left: -1rem !important;
+        margin-right: -1rem !important;
+        padding-left:  1rem;
+        padding-right:  1rem;
+    }
+    .Modal{
+        overflow-y: auto !important;
+    }
+}
+
+/* all screens above 768px */
+@media screen and (min-width: 768px) {
+    .ModalComp-wrapper{
+        min-height: calc(100vh); /*screen height - navbar height - padding top*/
+    }
+    .ModalComp-wrapper-up{
+        animation: riseUp-tab 500ms forwards;
+    }
+    .ModalComp-wrapper-down{
+        animation: fallDown-tab 500ms forwards;
+    }
+    .modalPoster-small{
+        display: none;
+    }
+    .modalPoster-big{
+        display: block;
+    }
+    .modalPoster{
+        width: 300px;
+    }
+}
+
+/* all screens above 1024px */
+@media screen and (min-width: 1024px) {
+    .ModalComp-wrapper{
+        left: 7rem; /* navbar width(6rem) + 1rem padding */
+    }
+    .ModalComp-wrapper-up{
+        animation: riseUp-desktop 500ms forwards;
+    }
+
+    .ModalComp-wrapper-down{
+        animation: fallDown-desktop 500ms forwards;
+    }
+    .modalPoster{
+        width: 350px;
+    }
+}
+
+@keyframes riseUp-mobile {
     from{
         top: 100vh;
+    }
+    to{
+        top: 56px; /* navbar height  */
+    }
+}
+
+@keyframes fallDown-mobile {
+    from{
+        top: 56px; /* navbar height  */
+    }
+    to{
+        top: 100vh;
+    }
+}
+
+
+@keyframes riseUp-tab {
+    from{
+        top: 100vh; 
+    }
+    to{
+        top: 72px; /* navbar height + 16px padding */
+    }
+}
+
+@keyframes fallDown-tab {
+    from{
+        top: 72px; /* navbar height + 16px padding */
+    }
+    to{
+        top: 100vh;
+    }
+}
+
+
+@keyframes riseUp-desktop {
+    from{
+        top: 100vh; 
     }
     to{
         top: 0;
     }
 }
 
-@keyframes fallDown {
+@keyframes fallDown-desktop {
     from{
         top: 0;
     }
@@ -41,3 +156,4 @@
         top: 100vh;
     }
 }
+

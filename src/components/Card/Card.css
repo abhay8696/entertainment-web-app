@@ -7,6 +7,7 @@
     background-position: center;
     background-size: cover;
     position: relative;
+    background-repeat: no-repeat;
 }
 .Recommendations-card{
     aspect-ratio: 1.6;
@@ -15,6 +16,12 @@
 .SearchResult-card{
     aspect-ratio: 0.6666;
     max-width: 150px;
+}
+.ModalComp-card{
+    /* background-color: var(--color-semi-dark-blue);
+    background-size: contain; */
+    width: 100px;
+    aspect-ratio: 1;
 }
 
 .Trending-card{
@@ -51,6 +58,10 @@
         min-width: 470px;
         width: 470px;
         height: 230px;
+    }
+    .ModalComp-card{
+        width: 150px;
+        aspect-ratio: 1;
     }
     .cardButton{
         top: 20px;

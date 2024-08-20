@@ -3,9 +3,7 @@ import React from 'react';
 import "./Trending.css"
 //components
 import Card from '../Card/Card';
-import { fetchTopRated } from '../../functions';
 
-const dummyImg = "https://imgs.search.brave.com/QrrF8yctvnxGKn5UBvuEt1XL7Pv04zXmzQ0y50RN5cY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA3LzkxLzIyLzU5/LzM2MF9GXzc5MTIy/NTkyN19jYVJQUEg5/OUQ2RDFpRm9ua0NS/bUNHemtKUGYzNlFE/dy5qcGc";
 
 
 const Trending = props => {
@@ -68,7 +66,7 @@ const Trending = props => {
                     rating = {vote_average}
                     title = {original_title || title || name || original_name}
                     thumbnail = {poster_path || backdrop_path}
-                    poster = {poster_path}
+                    poster = {poster_path || backdrop_path}
                     parentComp = "Trending"
                     key = {id}
                     cardID = {id}
@@ -80,7 +78,7 @@ const Trending = props => {
     }
     return (
         <>
-            <h1 className='px-4 md:px-0 lg:px-9' onClick={()=>fetchTopRated("tv")}>Trending</h1>
+            <h1 className='px-4 md:px-0 lg:px-9'>Trending</h1>
             <marquee behavior="alternate" scrollamount="5">
                 <div className='flex gap-4 trendCardGrid'>
                     {/* {displayDummyData()} */}

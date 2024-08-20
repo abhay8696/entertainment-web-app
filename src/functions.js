@@ -1,7 +1,4 @@
-import loadInitialDataWith_UUID from "./initialData"
-import axios from "axios";
-
-const tmdbToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZTc5MWRmZDNhNTUzMmUzMGQwY2UxOGM2MzM4NzI5NiIsIm5iZiI6MTcyMzQ1NjI4OC41NTk2NDksInN1YiI6IjY2YjljNTk1MWNmNzA2OTIwMmI3NWZkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.J6w5-fCvVFR5PXvHT-Gona7jPfP3leYc3xGRVb4PAF4";
+import loadInitialDataWith_UUID from "./initialData";
 
 export const transformString = str=> {
     if(!str) return "";
@@ -43,62 +40,4 @@ export const localData = (dataName) => {
     }
 
     return data;
-}
-
-export const fetchTrending = async (type) => {
-    const options = {
-        method: 'GET',
-        url: `https://api.themoviedb.org/3/trending/${type}/day?language=en-US&page=1`,
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${tmdbToken}`
-        }
-      };
-
-    try {
-        const res = await axios.request(options);
-        return res.data.results
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-export const fetchTopRated = async type => {
-    const options = {
-        method: 'GET',
-        url: `https://api.themoviedb.org/3/${type}/top_rated?language=en-US&page=1`,
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${tmdbToken}`
-        }
-      };
-
-    try {
-        const res = await axios.request(options);
-        return res.data.results;
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-export const fetchByName = async (title, category) => {
-    // category === "all" || category === "bookmark" ? category = "multi" : null;
-    
-    const options = {
-        method: 'GET',
-        // url: `https://api.themoviedb.org/3/search/${category}`,
-        url: `https://api.themoviedb.org/3/search/multi`,
-        params: {query: title, language: 'en-US', page: '1'},
-        headers: {
-          accept: 'application/json',
-          Authorization: `Bearer ${tmdbToken}`
-        }
-    };
-
-    try {
-        const res = await axios.request(options);
-        return res.data.results
-    } catch (error) {
-        console.log(error)
-    }
 }

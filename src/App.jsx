@@ -6,8 +6,9 @@ import AppBody from './components/AppBody/AppBody'
 //contexts
 import { ModalContext } from './contexts/AllContexts.js'
 //functions
-import { fetchTopRated, fetchTrending, localData } from './functions.js';
+import { fetchTopRated, fetchTrending } from './tmdb_functions.js';
 import ModalComp from './components/ModalComp/ModalComp.jsx'
+import { localData } from './functions.js'
 
 const filterArr = ["all", "movie", "tv", "bookmark"];
 
@@ -96,7 +97,7 @@ function App() {
         TMDB_trending={TMDB_trending}
         TMDB_recommended={TMDB_recommended}
       />
-      {/* <ModalComp /> */}
+      <ModalComp />
     </ModalContext.Provider>
   )
 }
