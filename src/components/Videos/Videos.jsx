@@ -20,6 +20,7 @@ const Videos = props => {
                     allData = {vid}
                     key = {`videoCard-${id}`}
                     site = {site}
+                    parentComp = "Videos"
                 />
             )
         })

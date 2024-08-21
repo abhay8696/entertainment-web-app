@@ -21,6 +21,7 @@ const Casting = props => {
                     characterName = {trim_string(character, 19)}
                     allData = {actor}
                     key = {`castCard-${id}`}
+                    parentComp = "Casting"
                 />
             )
         })

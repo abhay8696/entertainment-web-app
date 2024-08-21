@@ -3,7 +3,7 @@ nav{
     background-color: var(--color-semi-dark-blue);
     height: 56px;
     position: fixed;
-    z-index: 10;
+    z-index: 25;
 
 }
 

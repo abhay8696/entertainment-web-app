@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 //context
 import { ModalContext } from '../../contexts/AllContexts';
 //styles
 import "./ModalComp.css";
 import { fetchByID, fetchDetailsBy_type } from '../../tmdb_functions';
+//assets
+import closeIcon from "../../assets/close-icon.svg";
 //components
 import Card from '../Card/Card';
 import Casting from '../Casting/Casting';
@@ -17,6 +19,8 @@ const ModalComp = () => {
     const [videos, setVideos] = useState(null);
     //contexts
     const [Modal, SetModal] = useContext(ModalContext);
+    //refs
+    const closeModalButtonAnimation = useRef("");
     
     useEffect(()=> {
         let timeoutId;
@@ -24,7 +28,7 @@ const ModalComp = () => {
         if(Modal?.position === "down"){
             timeoutId = setTimeout(() => {
                 clearData()
-            }, 1000);
+            }, 500);
         }
 
         return () => clearTimeout(timeoutId);
@@ -38,13 +42,17 @@ const ModalComp = () => {
 
         setMoreData(moreDetails);
         setCast(credits.cast);
-        setVideos(videos.results)
+        setVideos(videos.results);
+        closeModalButtonAnimation.current = "slideInAnime";
     }
     const toggleModal = () => {
         SetModal({...Modal, position: "down"})
     }
     
-    const clearData = () => setCast([]);
+    const clearData = () => {
+        setCast([]);
+        closeModalButtonAnimation.current = "slideOutAnime";
+    }
 
 
     let { year, category, rating, title, thumbnail, id, original_title, overview, popularity, media_type, poster_path, release_date, vote_average, original_name, name } 
@@ -89,10 +97,20 @@ const ModalComp = () => {
         <div 
             className={`ModalComp-wrapper ModalComp-wrapper-${Modal.position}`} 
             
-        >
+        >   
+            <span 
+                onClick={toggleModal} 
+                className={`${closeModalButtonAnimation.current} backIcon w-[35px] h-[100px] py-1 top-[30vh] md:top-[45vh] fixed flex items-center justify-center cursor-pointer `}
+            >
+                <img 
+                    src={closeIcon} 
+                    alt="close button" 
+                    className="w-[50px] aspect-[16/9]"
+                />
+            </span>
             <div 
                 className='Modal p-4 lg:px-9 text-left flex flex-col gap-2'
-                onClick={toggleModal}
+                
             >
                 <img src={poster_path} className='modalPoster rounded-xl modalPoster-small' />
                 <div className='modalHead py-2 md:py-4 flex gap-4 items-center md:rounded-xl'>

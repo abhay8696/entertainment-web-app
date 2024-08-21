@@ -2,20 +2,37 @@ import React from 'react';
 //styles
 import "./MiniCard.css";
 import { trim_string } from '../../functions';
+//assets
+import youtubeIcon from "../../assets/icon-youtube.svg";
+
+const dummyImg = "https://imgs.search.brave.com/QrrF8yctvnxGKn5UBvuEt1XL7Pv04zXmzQ0y50RN5cY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA3LzkxLzIyLzU5/LzM2MF9GXzc5MTIy/NTkyN19jYVJQUEg5/OUQ2RDFpRm9ua0NS/bUNHemtKUGYzNlFE/dy5qcGc";
+
 
 const MiniCard = props => {
-    const { name, original_name, profile_path, characterName, allData, youtubeKey, site } = props;
+    const { parentComp, name, original_name, profile_path, characterName, allData, youtubeKey, site } = props;
 
     //sub-components
     const ProfilePicture = () => {
-        if(profile_path){
+        if(profile_path || site){
+            let aspect = "1", backgroundImage = "", flexStr = "flex justify-center items-center"
+            let img = <img src={youtubeIcon} alt="youtube icon" className='w-[100px]'/>
+
+            if(parentComp === "Videos") aspect = "16/9";
+
+            if(parentComp === "Casting"){
+                backgroundImage = profile_path ? `url(https://image.tmdb.org/t/p/w220_and_h330_face${profile_path})` : `url(${dummyImg})`
+                img = null;
+            }
+
             return(
                 <div
-                    className='w-[120px] md:w-[175px] aspect-[1] rounded-xl bg-center bg-cover'
+                    className={`cursor-pointer h-[120px] md:h-[175px] aspect-[${aspect}] rounded-xl bg-center bg-cover bg-semi-dark-blue ${flexStr}`}
                     style={{
-                        backgroundImage: profile_path ? `url(https://image.tmdb.org/t/p/w220_and_h330_face${profile_path})` : `url(${dummyImg})`
+                        backgroundImage: backgroundImage
                     }}
-                ></div>
+                >
+                    {img}
+                </div>
             )
         }
     }
@@ -37,6 +54,13 @@ const MiniCard = props => {
           </div>
         );
       };
+      const youtubeImg = ()=> {
+        return (
+            <div>
+                
+            </div>
+        )
+      }
       const Character_Name = ({name}) => {
         if(!name) return null;
 
@@ -53,7 +77,7 @@ const MiniCard = props => {
         <div className='MiniCard CastCard'>
             {/* <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${profile_path} max-w-[200px] `}/> */}
             <ProfilePicture />
-            <YouTubeEmbed youtubeKey={youtubeKey} title={name}/>
+            {/* <YouTubeEmbed youtubeKey={youtubeKey} title={name}/> */}
             <div className='castCardTexts flex flex-col mt-1'>
                 <span className='text-white text-sm'>
                     {name || original_name}
