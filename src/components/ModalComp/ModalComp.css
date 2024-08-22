@@ -92,7 +92,7 @@
     .ModalComp-wrapper-down{
         animation: fallDown-tab 500ms forwards;
     }
-    .modalPoster-small{
+    .modalPoster-small, .modalPoster-small-wrapper{
         display: none;
     }
     .modalPoster-big{

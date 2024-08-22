@@ -112,7 +112,9 @@ const ModalComp = () => {
                 className='Modal p-4 lg:px-9 text-left flex flex-col gap-2'
                 
             >
-                <img src={poster_path} className='modalPoster rounded-xl modalPoster-small' />
+                <div className='flex justify-center align-center modalPoster-small-wrapper'>
+                    <img src={poster_path} className='align-self-center modalPoster rounded-xl modalPoster-small' />
+                </div>
                 <div className='modalHead py-2 md:py-4 flex gap-4 items-center md:rounded-xl'>
                     <img src={poster_path} className='modalPoster rounded-xl modalPoster-big' />
                     <div className='flex-1'>
