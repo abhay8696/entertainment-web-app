@@ -12,7 +12,7 @@ const MiniCard = props => {
     const { parentComp, name, original_name, profile_path, characterName, allData, youtubeKey, site } = props;
 
     //sub-components
-    const ProfilePicture = () => {
+    const MiniCardImage = () => {
         if(profile_path || site){
             let aspect = "1", backgroundImage = "", flexStr = "flex justify-center items-center"
             let img = <img src={youtubeIcon} alt="youtube icon" className='w-[100px]'/>
@@ -26,9 +26,10 @@ const MiniCard = props => {
 
             return(
                 <div
-                    className={`cursor-pointer h-[120px] md:h-[175px] aspect-[${aspect}] rounded-xl bg-center bg-cover bg-semi-dark-blue ${flexStr}`}
+                    className={`cursor-pointer h-[120px] md:h-[175px] rounded-xl bg-center bg-cover bg-semi-dark-blue ${flexStr}`}
                     style={{
-                        backgroundImage: backgroundImage
+                        backgroundImage: backgroundImage,
+                        aspectRatio: `${aspect}`
                     }}
                 >
                     {img}
@@ -76,7 +77,7 @@ const MiniCard = props => {
     return (
         <div className='MiniCard CastCard'>
             {/* <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${profile_path} max-w-[200px] `}/> */}
-            <ProfilePicture />
+            <MiniCardImage />
             {/* <YouTubeEmbed youtubeKey={youtubeKey} title={name}/> */}
             <div className='castCardTexts flex flex-col mt-1'>
                 <span className='text-white text-sm'>
