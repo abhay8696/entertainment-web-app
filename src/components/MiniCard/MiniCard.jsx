@@ -1,7 +1,6 @@
 import React from 'react';
 //styles
 import "./MiniCard.css";
-import { trim_string } from '../../functions';
 //assets
 import youtubeIcon from "../../assets/icon-youtube.svg";
 
@@ -9,33 +8,31 @@ const dummyImg = "https://imgs.search.brave.com/QrrF8yctvnxGKn5UBvuEt1XL7Pv04zXm
 
 
 const MiniCard = props => {
-    const { parentComp, name, original_name, profile_path, characterName, allData, youtubeKey, site } = props;
+    const { parentComp, name, original_name, profile_path, characterName, role, allData, youtubeKey, site } = props;
 
     //sub-components
     const MiniCardImage = () => {
-        if(profile_path || site){
-            let aspect = "1", backgroundImage = "", flexStr = "flex justify-center items-center"
-            let img = <img src={youtubeIcon} alt="youtube icon" className='w-[100px]'/>
+        let aspect = "1", backgroundImage = "", flexStr = "flex justify-center items-center"
+        let img = <img src={youtubeIcon} alt="youtube icon" className='w-[100px]'/>
 
-            if(parentComp === "Videos") aspect = "16/9";
+        if(parentComp === "Videos") aspect = "16/9";
 
-            if(parentComp === "Casting"){
-                backgroundImage = profile_path ? `url(https://image.tmdb.org/t/p/w220_and_h330_face${profile_path})` : `url(${dummyImg})`
-                img = null;
-            }
-
-            return(
-                <div
-                    className={`cursor-pointer h-[120px] md:h-[175px] rounded-xl bg-center bg-cover bg-semi-dark-blue ${flexStr}`}
-                    style={{
-                        backgroundImage: backgroundImage,
-                        aspectRatio: `${aspect}`
-                    }}
-                >
-                    {img}
-                </div>
-            )
+        if(parentComp === "cast" || parentComp === "crew"){
+            backgroundImage = profile_path ? `url(https://image.tmdb.org/t/p/w220_and_h330_face${profile_path})` : `url(${dummyImg})`
+            img = null;
         }
+
+        return(
+            <div
+                className={`cursor-pointer h-[120px] md:h-[175px] rounded-xl bg-center bg-cover bg-semi-dark-blue ${flexStr}`}
+                style={{
+                    backgroundImage: backgroundImage,
+                    aspectRatio: `${aspect}`
+                }}
+            >
+                {img}
+            </div>
+        )
     }
     const YouTubeEmbed = ({ youtubeKey, title }) => {
         if(!site) return null;
@@ -67,7 +64,9 @@ const MiniCard = props => {
 
         return(
             <span className='text-xs'>
-                <span className=''>{"as "}</span> 
+                <span className=''>
+                    {parentComp === "cast" ? "as " : "dept. "}
+                </span> 
                 <span className='text-white'>
                     {name}
                 </span>
@@ -75,7 +74,7 @@ const MiniCard = props => {
         )
       }
     return (
-        <div className='MiniCard CastCard'>
+        <div className='MiniCard CreditsCard'>
             {/* <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${profile_path} max-w-[200px] `}/> */}
             <MiniCardImage />
             {/* <YouTubeEmbed youtubeKey={youtubeKey} title={name}/> */}
@@ -83,7 +82,7 @@ const MiniCard = props => {
                 <span className='text-white text-sm'>
                     {name || original_name}
                 </span>
-                <Character_Name name={characterName} />
+                <Character_Name name={characterName || role} />
             </div>
         </div>
     )

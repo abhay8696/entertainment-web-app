@@ -8,7 +8,7 @@ import { fetchByID, fetchDetailsBy_type } from '../../tmdb_functions';
 import closeIcon from "../../assets/close-icon.svg";
 //components
 import Card from '../Card/Card';
-import Casting from '../Casting/Casting';
+import Credits from '../Credits/Credits';
 import Videos from '../Videos/Videos';
 
 const ModalComp = () => {
@@ -17,6 +17,7 @@ const ModalComp = () => {
     const [moreData, setMoreData] = useState(null);
     const [cast, setCast] = useState(null);
     const [videos, setVideos] = useState(null);
+    const [crew, setCrew] = useState(null);
     //contexts
     const [Modal, SetModal] = useContext(ModalContext);
     //refs
@@ -43,6 +44,7 @@ const ModalComp = () => {
         setMoreData(moreDetails);
         setCast(credits.cast);
         setVideos(videos.results);
+        setCrew(credits.crew);
         closeModalButtonAnimation.current = "slideInAnime";
     }
     const toggleModal = () => {
@@ -126,10 +128,13 @@ const ModalComp = () => {
                 
                 <p className='modalOverview md:hidden'>{overview}</p>
                 {
-                    cast ? <Casting cast = {cast} /> : null
+                    cast ? <Credits people = {cast} type = "cast" /> : null
                 }
                 {
                     videos ? <Videos videos={videos}/> : null
+                }
+                {
+                    crew ? <Credits people = {crew} type = "crew" /> : null
                 }
             </div>
         </div>
