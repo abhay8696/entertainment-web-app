@@ -1,11 +1,11 @@
 import React from 'react';
 //styles
-import "./Videos.css";
+import "./VideosRow.css";
 //components
 import MiniCard from '../MiniCard/MiniCard';
 import { trim_string } from '../../functions';
 
-const Videos = props => {
+const VideosRow = props => {
     const { videos } = props;
 
     //functions
@@ -20,13 +20,13 @@ const Videos = props => {
                     allData = {vid}
                     key = {`videoCard-${id}`}
                     site = {site}
-                    parentComp = "Videos"
+                    parentComp = "VideosRow"
                 />
             )
         })
     }
     return (
-        <div className='Videos'>
+        <div className='VideosRow'>
             <h4>Videos</h4>
             <div className='videosGrid mt-1 flex gap-4 overflow-x-auto'>
                 {displayVideoCards()}
@@ -35,4 +35,4 @@ const Videos = props => {
     );
 };
 
-export default Videos;
+export default VideosRow;

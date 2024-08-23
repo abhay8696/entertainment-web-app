@@ -20,7 +20,7 @@ const Credits = props => {
                     profile_path = {profile_path}
                     characterName = {trim_string(character, 19)}
                     allData = {actor}
-                    key = {`creditsCard-${id}`}
+                    key = {`people-${type}-${id}}`}
                     parentComp = {type}
                     role = {known_for_department}
                 />

@@ -9,7 +9,7 @@ import closeIcon from "../../assets/close-icon.svg";
 //components
 import Card from '../Card/Card';
 import Credits from '../Credits/Credits';
-import Videos from '../Videos/Videos';
+import VideosRow from '../VideosRow/VideosRow';
 
 const ModalComp = () => {
 
@@ -131,7 +131,7 @@ const ModalComp = () => {
                     cast ? <Credits people = {cast} type = "cast" /> : null
                 }
                 {
-                    videos ? <Videos videos={videos}/> : null
+                    videos ? <VideosRow videos={videos}/> : null
                 }
                 {
                     crew ? <Credits people = {crew} type = "crew" /> : null
