@@ -10,6 +10,7 @@ import closeIcon from "../../assets/close-icon.svg";
 import Card from '../Card/Card';
 import Credits from '../Credits/Credits';
 import VideosRow from '../VideosRow/VideosRow';
+import ImagesGrid from '../ImagesGrid/ImagesGrid';
 
 const ModalComp = () => {
 
@@ -18,6 +19,7 @@ const ModalComp = () => {
     const [cast, setCast] = useState(null);
     const [videos, setVideos] = useState(null);
     const [crew, setCrew] = useState(null);
+    const [imageCollection, setImageCollection] = useState(null);
     //contexts
     const [Modal, SetModal] = useContext(ModalContext);
     //refs
@@ -40,12 +42,14 @@ const ModalComp = () => {
         const moreDetails = await fetchByID(id, media_type);
         const credits = await fetchDetailsBy_type(id, media_type, "casting");
         const videos = await fetchDetailsBy_type(id, media_type, "videos");
+        const imageCollection = await fetchByID(id, media_type, "images");
 
         setMoreData(moreDetails);
         setCast(credits.cast);
         setVideos(videos.results);
         setCrew(credits.crew);
         closeModalButtonAnimation.current = "slideInAnime";
+        setImageCollection(imageCollection?.posters || imageCollection?.backdrops);
     }
     const toggleModal = () => {
         SetModal({...Modal, position: "down"})
@@ -57,6 +61,7 @@ const ModalComp = () => {
         setCast(null)
         setVideos(null)
         setCrew(null)
+        setImageCollection(null)
         closeModalButtonAnimation.current = "slideOutAnime";
     }
 
@@ -140,6 +145,10 @@ const ModalComp = () => {
                 {
                     crew ? <Credits people = {crew} type = "crew" /> : null
                 }
+                {
+                    imageCollection ? <ImagesGrid images={imageCollection}/> : null
+                }
+                
             </div>
         </div>
     );

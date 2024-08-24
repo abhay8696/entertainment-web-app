@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 //styles
 import "./MiniModal.css";
 import { fetchByID } from '../../tmdb_functions';
+//components
+import ImagesGrid from '../ImagesGrid/ImagesGrid';
 
 const YouTubeEmbed = ({ youtubeKey, title }) => {
     if(!youtubeKey || !title) return null;
@@ -26,11 +28,16 @@ const MiniModal = props => {
 
     //states
     const [personData, setPersonData] = useState();
+    const [personImages, setPersonImages] = useState();
+    
 
     //when popup appears
     useEffect(()=> {
         if(popUpStatus === "popUp-appear"){
-            if(parentComp === "cast" || parentComp === "crew") getPersonData();
+            if(parentComp === "cast" || parentComp === "crew"){
+                getPersonData();
+                getPersonImages()
+            }
 
         }
     }, [popUpStatus]);
@@ -44,6 +51,11 @@ const MiniModal = props => {
         const fetchPersonData = await fetchByID(allData.id, "person");
         setPersonData(fetchPersonData);
     }
+    const getPersonImages = async () => {
+        const images = await fetchByID(allData.id, "person", "images");
+        if(!images) return;
+        setPersonImages(images.profiles);
+    }
 
     const DisplayPersonInfo = ({personData}) => {
         if(!personData) return null;
@@ -56,7 +68,11 @@ const MiniModal = props => {
         return(
             <div className='PersonPopUp'>
                 <div className='popUpHead rounded-xl'>
-                    <img src={profile_path} alt={name} />
+                    <img 
+                        src={profile_path} 
+                        alt={name} 
+                        className='w-[200px] md:w-[250px] lg:w-[300px]'
+                    />
                     <h3>{name}</h3>
                 </div>
                 <div className='popUpBody'>
@@ -81,9 +97,10 @@ const MiniModal = props => {
 
 
     return (
-        <div className={`popUpWrapper ${popUpStatus}`} onClick={handleClick}>
+        <div className={`popUpWrapper ${popUpStatus} overflow-x-auto`} onClick={handleClick}>
             {displayVideoPopUp()}
             <DisplayPersonInfo personData={personData} />
+            <ImagesGrid images={personImages}/>
         </div>
     );
 };

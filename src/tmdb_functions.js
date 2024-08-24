@@ -1,15 +1,32 @@
 import axios from "axios";
 const tmdbToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZTc5MWRmZDNhNTUzMmUzMGQwY2UxOGM2MzM4NzI5NiIsIm5iZiI6MTcyMzQ1NjI4OC41NTk2NDksInN1YiI6IjY2YjljNTk1MWNmNzA2OTIwMmI3NWZkOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.J6w5-fCvVFR5PXvHT-Gona7jPfP3leYc3xGRVb4PAF4";
 
-export const fetchByID = async (id, category) => {
+export const fetchByID = async (id, category, extraParameter) => {
+    /**
+     * id => tmdb id
+     * category => movies/tv
+     * extraParameter => images/videos
+     */
+    
+    let key_for_local_storage = `${category}-${id}`
+
+    let url = `https://api.themoviedb.org/3/${category}/${id}`;
+
+    if(extraParameter){
+        url = url.concat(`/${extraParameter}`);
+        key_for_local_storage = key_for_local_storage.concat(`-${extraParameter}`);
+    }
+
     //get from local
-    const details = localStorage.getItem(`${category}-${id}`);
+    const details = localStorage.getItem(key_for_local_storage);
+
     if(details) return JSON.parse(details);
+
 
     //if not found get from api
     const options = {
         method: 'GET',
-        url: `https://api.themoviedb.org/3/${category}/${id}?language=en-US`,
+        url,
         headers: {
           accept: 'application/json',
           Authorization: `Bearer ${tmdbToken}`
@@ -22,7 +39,7 @@ export const fetchByID = async (id, category) => {
         // console.log(res.data)
         //save to localstorage
         console.log(`${category} fetching from API and saving to local`)
-        localStorage.setItem(`${category}-${id}`, JSON.stringify(res.data));
+        localStorage.setItem(key_for_local_storage, JSON.stringify(res.data));
         return res.data
     } catch (error) {
         console.log(error)
