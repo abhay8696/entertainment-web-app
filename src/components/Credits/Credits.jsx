@@ -4,6 +4,8 @@ import "./Credits.css";
 //components
 import MiniCard from '../MiniCard/MiniCard';
 import { trim_string } from '../../functions';
+//libraries
+import { v4 as uuidv4 } from 'uuid';
 
 const dummyImg = "https://imgs.search.brave.com/QrrF8yctvnxGKn5UBvuEt1XL7Pv04zXmzQ0y50RN5cY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA3LzkxLzIyLzU5/LzM2MF9GXzc5MTIy/NTkyN19jYVJQUEg5/OUQ2RDFpRm9ua0NS/bUNHemtKUGYzNlFE/dy5qcGc";
 
@@ -20,7 +22,7 @@ const Credits = props => {
                     profile_path = {profile_path}
                     characterName = {trim_string(character, 19)}
                     allData = {actor}
-                    key = {`people-${type}-${id}}`}
+                    key = {`people-${type}-${id}-${uuidv4()}`}
                     parentComp = {type}
                     role = {known_for_department}
                 />

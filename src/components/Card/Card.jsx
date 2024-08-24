@@ -45,9 +45,13 @@ const Card = props => {
     }
     const DisplayBookmarkButton = () => {
         if(!bookmarkMap) return;
+        const handleBookButton = evt=> {
+            evt.stopPropagation();
+            handleBookMarks(cardID, allData);
+        }
         return(
             <span 
-                onClick={()=> handleBookMarks(cardID, allData)} className='cardButton flex items-center justify-center'
+                onClick={handleBookButton} className='cardButton flex items-center justify-center'
                 style={bookmarkMap.has(cardID) ? {opacity: 1} : null}
             >
                 <img 
@@ -61,7 +65,7 @@ const Card = props => {
             
 
     return (
-        <div className={`CardWrapper ${customClassName}`} onClick={()=> console.log(allData)}>
+        <div className={`CardWrapper ${customClassName} cursor-pointer `} onClick={()=> console.log(allData)}>
             <div 
                 className={`Card flex ${parentComp}-card`}
                 id = {`${transformString(cardTitle)}-small`} //remove spaces nad special characters

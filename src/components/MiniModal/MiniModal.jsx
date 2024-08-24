@@ -70,6 +70,7 @@ const MiniModal = props => {
     }
 
     const displayVideoPopUp = () => {
+        if(popUpStatus !== "popUp-appear") return null;
         if(!allData || !allData.key) return;
         return(
             <div className={`VideoPopUp h-[100%] flex items-center justify-center`} >

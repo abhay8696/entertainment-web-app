@@ -4,10 +4,21 @@
 
 .Card{
     border-radius: 8px;
-    background-position: center;
+    background-position: top;
     background-size: cover;
     position: relative;
     background-repeat: no-repeat;
+    background-size: 100% !important;
+    animation: backgroundRise 150s infinite;
+}
+.Card, .CardTexts{
+    transition: all 250ms;
+}
+.CardWrapper:hover .Card{
+    background-size: 105% !important;
+}
+.CardWrapper:hover .CardTexts{
+    color: var(--color-primary);
 }
 .Recommendations-card{
     aspect-ratio: 1.6;
@@ -92,5 +103,14 @@
     }
     .SearchResult-card{
         max-width: 250px;
+    }
+}
+
+@keyframes backgroundRise {
+    0%, 100%{
+        background-position: top;
+    }
+    50%{
+        background-position: bottom;
     }
 }

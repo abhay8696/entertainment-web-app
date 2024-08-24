@@ -52,7 +52,11 @@ const ModalComp = () => {
     }
     
     const clearData = () => {
-        setCast([]);
+        // setCast([]);
+        setMoreData(null)
+        setCast(null)
+        setVideos(null)
+        setCrew(null)
         closeModalButtonAnimation.current = "slideOutAnime";
     }
 
@@ -102,7 +106,7 @@ const ModalComp = () => {
         >   
             <span 
                 onClick={toggleModal} 
-                className={`${closeModalButtonAnimation.current} backIcon w-[35px] h-[100px] py-1 top-[30vh] md:top-[45vh] fixed flex items-center justify-center cursor-pointer `}
+                className={`${closeModalButtonAnimation.current} backIcon w-[75px] py-1.5 fixed flex items-center justify-center cursor-pointer `}
             >
                 <img 
                     src={closeIcon} 
