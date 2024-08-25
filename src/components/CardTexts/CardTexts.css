@@ -38,6 +38,9 @@
     .cardName{
         font-size: 24px;
     }
+    .searchResultGrid .cardName{
+        font-size: 18px;
+    }
 }
 
 

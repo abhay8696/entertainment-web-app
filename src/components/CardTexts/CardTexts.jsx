@@ -5,6 +5,7 @@ import "./CardTexts.css";
 import tvIcon from "../../assets/icon-nav-tv-series.svg";
 import movieIcon from "../../assets/icon-nav-movies.svg";
 import bigDot from "../../assets/big-dot.svg";
+import { trim_string } from '../../functions';
 
 const CardTexts = props => {
     const { year, category, rating, title, noData, name, characterName, parentComp } = props;
@@ -31,7 +32,7 @@ const CardTexts = props => {
             return <h4 className='cardName text-sm'>{name || "Loading..."}</h4>
         }
 
-        return <h4 className='cardName '>{title || "Loading..."}</h4>
+        return <h4 className='cardName '>{trim_string(title, 60) || "Loading..."}</h4>
     }
     const DisplayCharacterName = () => {
         if(!characterName) return null;

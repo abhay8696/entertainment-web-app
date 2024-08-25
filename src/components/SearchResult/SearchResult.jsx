@@ -48,7 +48,7 @@ const SearchResult = props => {
                     {` '${searchedItem?.title}'`}
                 </span>
             </h4>
-            <div className='recomCardGrid grid gap-10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4'>
+            <div className='recomCardGrid searchResultGrid grid justify-between gap-4 gap-y-8 lg:gap-8 grid-cols-2 md:grid-cols-4 lg:grid-cols-6'>
                 {/* <Card
                         bookmarkMap={bookmarkMap}
                         handleBookMarks={handleBookMarks} 
