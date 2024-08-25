@@ -73,8 +73,8 @@ function App() {
     setCategoreyName("all");
   }
   
-  const handleSearchItem = (data) => {
-    setSearchedItem(data);
+  const handleSearchItem = (title, data) => {
+    setSearchedItem({title, data});
   }
 
   return (

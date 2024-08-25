@@ -8,7 +8,7 @@ const ImagesGrid = ({images})=> {
     const arr = images.map(item => {
         return (
             <img  
-                className='w-[100px] md:w-[150px] lg:w-[200px]'
+                className=''
                 src={`${tmdbImgUrl}${item.file_path}`} 
                 alt={`image collection`}
                 loading='lazy'
@@ -19,7 +19,7 @@ const ImagesGrid = ({images})=> {
     return(
         <div className='imagesGrid-wrapper'>
             <h4 className='capitalize'>images</h4>
-            <div className='imagesGrid flex flex-wrap gap-4'>
+            <div className='imagesGrid grid grid-cols-3 mt-1 md:grid-cols-5 lg:grid-cols-8 justify-between gap-4'>
                 {arr}
             </div>
         </div>

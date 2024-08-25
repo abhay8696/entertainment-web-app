@@ -5,13 +5,13 @@ import "./SearchResult.css";
 import Card from '../Card/Card';
 
 const SearchResult = props => {
-    const { bookmarkMap, handleBookMarks, data, categoreyName } = props;
+    const { bookmarkMap, handleBookMarks, searchedItem, categoreyName, handleSearchItem } = props;
     
     //functions
     const displayCards = () => {
-        if(!data) return [];
-        console.log(data)
-        return data
+        if(!searchedItem) return [];
+        console.log(searchedItem)
+        return searchedItem.data
         .filter(item => {
             if (categoreyName === "all") {
                 return item.media_type === "movie" || item.media_type === "tv";
@@ -42,7 +42,12 @@ const SearchResult = props => {
 
     return (
         <>
-            <h1 >Result</h1>
+            <h4 >
+                Results for 
+                <span className='capitalize'>
+                    {` '${searchedItem?.title}'`}
+                </span>
+            </h4>
             <div className='recomCardGrid grid gap-10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4'>
                 {/* <Card
                         bookmarkMap={bookmarkMap}
@@ -56,7 +61,7 @@ const SearchResult = props => {
                         parentComp = "SearchResult"
                         cardID = {imdbID}
                 /> */}
-                {data ? displayCards() : null}
+                {searchedItem?.data ? displayCards() : null}
             </div>
         </>
     );

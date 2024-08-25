@@ -22,7 +22,7 @@ const AppBody = props => {
     //functions
     const getTMDB = async (title) => {
         const data = await fetchByName(title, categoreyName);
-        handleSearchItem(data);
+        handleSearchItem(title, data);
     }
     return (
         <div id='AppBody' className='AppBody text-start flex flex-col gap-6 md:gap-8 pt-14 lg:pt-0 lg:pl-24 my-6 md:my-8'>
@@ -42,8 +42,9 @@ const AppBody = props => {
                         <SearchResult 
                             bookmarkMap={bookmarkMap}
                             handleBookMarks={handleBookMarks} 
-                            data={searchedItem}
+                            searchedItem={searchedItem}
                             categoreyName={categoreyName}
+                            handleSearchItem={handleSearchItem}
                         />
                     </div>
                 :

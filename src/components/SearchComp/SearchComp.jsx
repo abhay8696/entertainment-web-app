@@ -12,7 +12,7 @@ const SearchComp = props => {
     const inputRef = useRef(null);
     //functions
     const handleChange = evt => {
-        setText(pre=> evt.target.value);
+        setText(evt.target.value);
         if(categoreyName !== "all") handleCategoreyName("all");
 
         if(!evt.target.value.length){
@@ -23,9 +23,22 @@ const SearchComp = props => {
     const handleSubmit = evt => {
         evt.preventDefault();
         getTMDB(text);
+        setText("")
         if(inputRef.current) inputRef.current.blur();
     }
-    
+    const clearForm = event=> {
+        event.preventDefault();
+        setText("");
+        handleSearchItem(null);
+
+    }
+    const button = <span 
+                    onClick={clearForm}
+                    className='cursor-pointer bg-greyish-blue text-sm px-2 py-1 rounded-md'
+                    >
+                        Cancel
+                    </span>
+
     return (
         <form className='SearchComp flex items-center justify-start gap-2' onSubmit={handleSubmit}>
             <label htmlFor="searchText flex items-center justify-center">
@@ -40,6 +53,9 @@ const SearchComp = props => {
                 id='searchText'
                 required
             />
+            {
+                text.length ? button : null
+            }
         </form>
     );
 };

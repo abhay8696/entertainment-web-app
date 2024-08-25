@@ -12,7 +12,8 @@
 }
 
 .popUp-disappear{
-    display: none;
+    /* display: none; */
+    animation: fallDown-mobile 500ms forwards; /*keyframe is defined in ModalComp.css*/
 }
 
 
@@ -22,6 +23,7 @@
 
 .popUp-appear{
     display: block;
+    animation: riseUp-mobile 500ms forwards; /*keyframe is defined in ModalComp.css*/
 }
 
 .VideoPopUp{
@@ -34,6 +36,12 @@
     .popUpWrapper{
         top: calc(56px + 1rem); /* navbar height + padding*/
     }
+    .popUp-appear{
+        animation: riseUp-tab 500ms forwards; /*keyframe is defined in ModalComp.css*/
+    }
+    .popUp-disappear{
+        animation: fallDown-tab 500ms forwards; /*keyframe is defined in ModalComp.css*/
+    }
 }
 
 
@@ -42,5 +50,12 @@
     .popUpWrapper{
         top: 0;
         left: 7rem; /* navbar width(6rem) + 1rem padding */
+    }
+    .popUp-appear{
+        animation: riseUp-desktop 500ms forwards; /*keyframe is defined in ModalComp.css*/
+    }
+
+    .popUp-disappear{
+        animation: fallDown-desktop 500ms forwards; /*keyframe is defined in ModalComp.css*/
     }
 }

@@ -16,7 +16,7 @@ const MiniCard = props => {
     //sub-components
     const MiniCardImage = () => {
         let aspect = "1", backgroundImage = "", flexStr = "flex justify-center items-center"
-        let img = <img src={youtubeIcon} alt="youtube icon" className='w-[100px]'/>
+        let img = <img src={youtubeIcon} alt="youtube icon" className='w-[100px] yt-img'/>
 
         if(parentComp === "VideosRow") aspect = "16/9";
 
@@ -27,10 +27,10 @@ const MiniCard = props => {
 
         return(
             <div
-                className={`cursor-pointer h-[120px] md:h-[175px] rounded-xl bg-center bg-cover bg-semi-dark-blue ${flexStr}`}
+                className={`MiniCardImg h-[120px] md:h-[175px] rounded-xl bg-center bg-cover bg-semi-dark-blue ${flexStr}`}
                 style={{
                     backgroundImage: backgroundImage,
-                    aspectRatio: `${aspect}`
+                    aspectRatio: `${aspect}`,
                 }}
             >
                 {img}
@@ -45,7 +45,7 @@ const MiniCard = props => {
               <span className=''>
                   {parentComp === "cast" ? "as " : "dept. "}
               </span> 
-              <span className='text-white'>
+              <span className=''>
                   {name}
               </span>
           </span>
@@ -62,12 +62,12 @@ const MiniCard = props => {
     }
 
     return (
-        <div className='MiniCard CreditsCard' onClick={handleClick}>
+        <div className='MiniCard cursor-pointer CreditsCard' onClick={handleClick}>
             {/* <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${profile_path} max-w-[200px] `}/> */}
             <MiniCardImage />
             {/* <YouTubeEmbed youtubeKey={youtubeKey} title={name}/> */}
             <div className='castCardTexts flex flex-col mt-1'>
-                <span className='text-white text-sm'>
+                <span className='text-sm'>
                     {name || original_name}
                 </span>
                 <Character_Name name={characterName || role} />

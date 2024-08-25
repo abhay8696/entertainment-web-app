@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 //styles
 import "./MiniModal.css";
 import { fetchByID } from '../../tmdb_functions';
+//assets
+import closeIcon from "../../assets/close-icon.svg";
 //components
 import ImagesGrid from '../ImagesGrid/ImagesGrid';
 
@@ -30,6 +32,8 @@ const MiniModal = props => {
     const [personData, setPersonData] = useState();
     const [personImages, setPersonImages] = useState();
     
+    //refs
+    const closeModalButtonAnimation = useRef("");
 
     //when popup appears
     useEffect(()=> {
@@ -38,6 +42,7 @@ const MiniModal = props => {
                 getPersonData();
                 getPersonImages()
             }
+            closeModalButtonAnimation.current = "slideInAnime";
 
         }
     }, [popUpStatus]);
@@ -46,6 +51,7 @@ const MiniModal = props => {
     const handleClick = event => {
         event.stopPropagation();
         closePopUp();
+        closeModalButtonAnimation.current = "slideOutAnime";
     }
     const getPersonData = async () => {
         const fetchPersonData = await fetchByID(allData.id, "person");
@@ -66,7 +72,7 @@ const MiniModal = props => {
         profile_path ? profile_path = `https://image.tmdb.org/t/p/w220_and_h330_face${profile_path}` : null;
 
         return(
-            <div className='PersonPopUp'>
+            <div className=''>
                 <div className='popUpHead rounded-xl'>
                     <img 
                         src={profile_path} 
@@ -97,7 +103,17 @@ const MiniModal = props => {
 
 
     return (
-        <div className={`popUpWrapper ${popUpStatus} overflow-x-auto`} onClick={handleClick}>
+        <div className={`popUpWrapper ${popUpStatus} overflow-x-auto`} >
+            <span 
+                onClick={handleClick} 
+                className={`${closeModalButtonAnimation.current} backIcon w-[75px] py-1.5 fixed top-0 left-0 md:left-[2rem] lg:left-0 lg:top-[2rem] flex items-center justify-center cursor-pointer `}
+            >
+                <img 
+                    src={closeIcon} 
+                    alt="close button" 
+                    className="w-[50px] aspect-[16/9]"
+                />
+            </span>
             {displayVideoPopUp()}
             <DisplayPersonInfo personData={personData} />
             <ImagesGrid images={personImages}/>

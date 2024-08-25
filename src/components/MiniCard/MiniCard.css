@@ -1,0 +1,17 @@
+
+.MiniCardImg, .castCardTexts, .yt-img{
+    transition: all 250ms !important;
+}
+.MiniCard:hover .MiniCardImg{
+    background-size: 105% !important;
+}
+.MiniCard:hover .castCardTexts{
+    color: var(--color-primary) !important;
+}
+.MiniCard:hover .yt-img{
+    scale: 105%;
+}
+
+.MiniCardImg{
+    transition: all 250ms !important;
+}
