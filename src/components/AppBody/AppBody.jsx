@@ -33,6 +33,7 @@ const AppBody = props => {
                     getTMDB={getTMDB}
                     categoreyName={categoreyName}
                     searchedItem={searchedItem}
+                    closeSearch={closeSearch}
                 />
             </div>
             {

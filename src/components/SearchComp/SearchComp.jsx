@@ -5,7 +5,7 @@ import "./SearchComp.css";
 import searchIcon from "../../assets/icon-search.svg";
 
 const SearchComp = props => {
-    const { getTMDB, handleSearchItem, handleCategoreyName, categoreyName } = props;
+    const { getTMDB, handleSearchItem, handleCategoreyName, categoreyName, closeSearch } = props;
     //states 
     const [text, setText] = useState("");
     //refs
@@ -16,8 +16,7 @@ const SearchComp = props => {
         if(categoreyName !== "all") handleCategoreyName("all");
 
         if(!evt.target.value.length){
-            handleSearchItem(null);
-            // handleCategoreyName("all");
+            closeSearch();
         }
     }
     const handleSubmit = evt => {
@@ -29,7 +28,7 @@ const SearchComp = props => {
     const clearForm = event=> {
         event.preventDefault();
         setText("");
-        handleSearchItem(null);
+        closeSearch();
 
     }
     const button = <span 
