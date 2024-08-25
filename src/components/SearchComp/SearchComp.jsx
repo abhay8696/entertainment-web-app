@@ -5,7 +5,7 @@ import "./SearchComp.css";
 import searchIcon from "../../assets/icon-search.svg";
 
 const SearchComp = props => {
-    const { getTMDB, handleSearchItem, handleCategoreyName, categoreyName, closeSearch } = props;
+    const { getTMDB, handleSearchItem, handleCategoreyName, categoreyName, closeSearch, searchedItem } = props;
     //states 
     const [text, setText] = useState("");
     //refs
@@ -35,7 +35,7 @@ const SearchComp = props => {
                     onClick={clearForm}
                     className='cursor-pointer bg-greyish-blue text-sm px-2 py-1 rounded-md'
                     >
-                        Cancel
+                        Close
                     </span>
 
     return (
@@ -53,7 +53,7 @@ const SearchComp = props => {
                 required
             />
             {
-                text.length ? button : null
+                text.length || searchedItem ? button : null
             }
         </form>
     );
