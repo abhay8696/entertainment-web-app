@@ -55,6 +55,7 @@ function App() {
   const handleCategoreyName = type => {
     if(type === "bookmark") setSearchedItem(null);
     setCategoreyName(type);
+    SetModal({...Modal, position: "down"});
   }
 
   const handleBookMarks = (id, data) => {
@@ -77,6 +78,11 @@ function App() {
     setSearchedItem({title, data});
   }
 
+  const logoClick_resetApp = () => {
+    closeSearch();
+    SetModal({...Modal, position: "down"});
+  }
+
   return (
     <ModalContext.Provider value={[Modal, SetModal]}>
       <Navbar 
@@ -84,6 +90,7 @@ function App() {
         closeSearch={closeSearch}
         handleCategoreyName = {handleCategoreyName}
         categoreyName = {categoreyName}
+        logoClick_resetApp = {logoClick_resetApp}
       />
       <AppBody 
         dummyData={dummyData} 
