@@ -1,6 +1,6 @@
 # Frontend Mentor - Entertainment Web App
 
-![Design preview for the Entertainment Web App coding challenge](./desktop-preview.jpg)
+![Design preview for the Entertainment Web App coding challenge](./desktop-preview.png)
 
 ## Welcome! 👋
 
