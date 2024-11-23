@@ -3,6 +3,8 @@ import React, { useRef, useState } from 'react';
 import "./SearchComp.css";
 //assets
 import searchIcon from "../../assets/icon-search.svg";
+//custom functions
+import { debounce } from '../../functions';
 
 const SearchComp = props => {
     const { getTMDB, handleSearchItem, handleCategoreyName, categoreyName, closeSearch, searchedItem } = props;
@@ -11,6 +13,7 @@ const SearchComp = props => {
     //refs
     const inputRef = useRef(null);
     //functions
+    const debouncedFetchData = debounce(()=>console.log(text), 500);
     const handleChange = evt => {
         setText(evt.target.value);
         if(categoreyName !== "all") handleCategoreyName("all");
@@ -18,10 +21,11 @@ const SearchComp = props => {
         if(!evt.target.value.length){
             closeSearch();
         }
+        debouncedFetchData(text)
     }
     const handleSubmit = evt => {
         evt.preventDefault();
-        getTMDB(text);
+        // getTMDB(text);
         setText("")
         if(inputRef.current) inputRef.current.blur();
     }
