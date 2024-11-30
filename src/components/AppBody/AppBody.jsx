@@ -27,6 +27,7 @@ const AppBody = (props) => {
         handleBookMarks,
         allBookmarks,
         handleCategoreyName,
+        handleAuthPage,
     } = props;
     //life cycle - on App load
     //functions
@@ -80,6 +81,7 @@ const AppBody = (props) => {
                                 categoreyName={categoreyName}
                                 dummyData={dummyData}
                                 TMDB_recommended={TMDB_recommended}
+                                handleAuthPage={handleAuthPage}
                             />
                         ) : null}
                     </div>

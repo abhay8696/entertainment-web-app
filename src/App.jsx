@@ -65,21 +65,23 @@ function App() {
         //only if user is looged in
         const userData = JSON.parse(window.localStorage.getItem("ewa_user"));
         if (userData) {
-            const allBookmarks = await bookmark_Ops({
+            const getBookmarks = await bookmark_Ops({
                 method: "get",
                 op_Type: "all",
                 token: userData.token,
             });
-            if (allBookmarks) {
-                let newMap = new Map();
-                allBookmarks.forEach((item) => {
-                    const { tmdb_id, data } = item;
-                    newMap.set(tmdb_id, data);
-                });
-
-                setAllBookmarks(newMap);
-            }
+            if (getBookmarks) updateAllBookmarks(getBookmarks);
         }
+    };
+
+    const updateAllBookmarks = (array) => {
+        let newMap = new Map();
+        array.forEach((item) => {
+            const { tmdb_id, data } = item;
+            newMap.set(tmdb_id, data);
+        });
+
+        setAllBookmarks(newMap);
     };
 
     const handleCategoreyName = (type) => {
@@ -115,15 +117,7 @@ function App() {
                     .token,
             });
 
-            if (updatedBookmarks) {
-                let newMap = new Map();
-                updatedBookmarks.forEach((item) => {
-                    const { tmdb_id, data } = item;
-                    newMap.set(tmdb_id, data);
-                });
-
-                setAllBookmarks(newMap);
-            }
+            if (updatedBookmarks) updateAllBookmarks(updatedBookmarks);
         } else handleAuthPage(true, "login");
         console.log(userData);
     };
@@ -163,6 +157,7 @@ function App() {
                 handleCategoreyName={handleCategoreyName}
                 categoreyName={categoreyName}
                 logoClick_resetApp={logoClick_resetApp}
+                handleAuthPage={handleAuthPage}
             />
             <AppBody
                 dummyData={dummyData}
@@ -175,6 +170,7 @@ function App() {
                 handleBookMarks={handleBookMarks}
                 TMDB_trending={TMDB_trending}
                 TMDB_recommended={TMDB_recommended}
+                handleAuthPage={handleAuthPage}
             />
             <ModalComp />
             {displayAuthPage()}

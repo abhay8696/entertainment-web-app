@@ -12,6 +12,7 @@ const Recommendations = (props) => {
         categoreyName,
         handleBookMarks,
         allBookmarks,
+        handleAuthPage,
     } = props;
 
     //functions
@@ -52,6 +53,18 @@ const Recommendations = (props) => {
     };
 
     const displayBookmarkCards = () => {
+        //check if user is logged in:
+        const user = JSON.parse(window.localStorage.getItem("ewa_user"));
+        if (!user)
+            return (
+                <button
+                    className="bg-primary rounded-lg p-2"
+                    onClick={() => handleAuthPage(true, "login")}
+                >
+                    Login to view bookmarks
+                </button>
+            );
+
         const newArr = Array.from(allBookmarks);
 
         if (!newArr.length) return [<p>{"No Bookmarks :("}</p>];
