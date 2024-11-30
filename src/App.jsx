@@ -10,6 +10,7 @@ import { fetchTopRated, fetchTrending } from "./tmdb_functions.js";
 import ModalComp from "./components/ModalComp/ModalComp.jsx";
 import { localData } from "./functions.js";
 import Authentication from "./components/Authentication/Authentication.jsx";
+import { bookmark_Ops } from "./backend_functions.js";
 
 const filterArr = ["all", "movie", "tv", "bookmark"];
 
@@ -18,14 +19,15 @@ function App() {
     const [searchedItem, setSearchedItem] = useState(null);
     const [dummyData, setDummyData] = useState(); //this data is displayed on Trending and Recommendations sections
     const [categoreyName, setCategoreyName] = useState("all");
-    const [bookmarkMap, setBookmarkMap] = useState(new Map());
     const [Modal, SetModal] = useState({ position: "initial", data: {} });
     const [TMDB_trending, SetTMDB_trending] = useState();
     const [TMDB_recommended, SetTMDB_recommended] = useState();
     const [authPage, setAuthPage] = useState({
-        status: true,
-        type: "login",
+        status: false,
+        type: "register",
     });
+    const [allBookmarks, setAllBookmarks] = useState(new Map());
+
     //on 1s load
     useEffect(() => {
         onLoad();
@@ -41,10 +43,10 @@ function App() {
     const onLoad = async () => {
         //get dummyData from local
         const dummyDataFromLocal = localData("dummyData");
-        const bookmarksFromLocal = localData("bookmarks");
+        // const bookmarksFromLocal = localData("bookmarks");
 
         setDummyData(dummyDataFromLocal);
-        if (bookmarksFromLocal) setBookmarkMap(new Map(bookmarksFromLocal));
+        // if (bookmarksFromLocal) setBookmarkMap(new Map(bookmarksFromLocal));
 
         const all = await fetchTrending("all");
         const movie = await fetchTrending("movie");
@@ -58,6 +60,26 @@ function App() {
                 tv: recommendedTV,
                 movie: recommendedMovies,
             });
+
+        //get all bookmarks
+        //only if user is looged in
+        const userData = JSON.parse(window.localStorage.getItem("ewa_user"));
+        if (userData) {
+            const allBookmarks = await bookmark_Ops({
+                method: "get",
+                op_Type: "all",
+                token: userData.token,
+            });
+            if (allBookmarks) {
+                let newMap = new Map();
+                allBookmarks.forEach((item) => {
+                    const { tmdb_id, data } = item;
+                    newMap.set(tmdb_id, data);
+                });
+
+                setAllBookmarks(newMap);
+            }
+        }
     };
 
     const handleCategoreyName = (type) => {
@@ -66,17 +88,44 @@ function App() {
         SetModal({ ...Modal, position: "down" });
     };
 
-    const handleBookMarks = (id, data) => {
-        if (bookmarkMap.has(id)) bookmarkMap.delete(id);
-        else bookmarkMap.set(id, data);
+    const handleBookMarks = async (tmdb_id, data) => {
+        //check if user is logged in
+        //check if tmdb_id is present is allBookmarks map
+        //if true delete, and call backend function
+        //else add new, and call backend function
+        //else display auth page
 
-        setBookmarkMap(new Map(bookmarkMap));
+        const userData = JSON.parse(window.localStorage.getItem("ewa_user"));
 
-        // //save bookmarks to local storage by converting map into arr
-        window.localStorage.setItem(
-            "bookmarks",
-            JSON.stringify(Array.from(bookmarkMap))
-        );
+        if (userData) {
+            let method, op_Type;
+            if (allBookmarks.has(tmdb_id)) {
+                method = "delete";
+                op_Type = "delete";
+            } else {
+                method = "post";
+                op_Type = "new";
+            }
+            let updatedBookmarks = await bookmark_Ops({
+                method,
+                op_Type,
+                tmdb_id,
+                data,
+                token: JSON.parse(window.localStorage.getItem("ewa_user"))
+                    .token,
+            });
+
+            if (updatedBookmarks) {
+                let newMap = new Map();
+                updatedBookmarks.forEach((item) => {
+                    const { tmdb_id, data } = item;
+                    newMap.set(tmdb_id, data);
+                });
+
+                setAllBookmarks(newMap);
+            }
+        } else handleAuthPage(true, "login");
+        console.log(userData);
     };
 
     const closeSearch = () => {
@@ -122,7 +171,7 @@ function App() {
                 handleSearchItem={handleSearchItem}
                 categoreyName={categoreyName}
                 handleCategoreyName={handleCategoreyName}
-                bookmarkMap={bookmarkMap}
+                allBookmarks={allBookmarks}
                 handleBookMarks={handleBookMarks}
                 TMDB_trending={TMDB_trending}
                 TMDB_recommended={TMDB_recommended}

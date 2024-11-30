@@ -1,9 +1,55 @@
 import axios from "axios";
+const localUrl = "http://localhost:8083/v1";
 
-const getAllBookmarks = async () => {
+export const authFunction = async ({ authType, name, email, password }) => {
+    if (!email || !password) return;
+    const url = `${localUrl}/auth/${authType}`;
+    const body = { name, email, password };
+
     try {
-        // const data = await axios.get
-    } catch (error) {}
+        const res = await axios.post(url, body);
+        // console.log(url);
+        // console.log(res.data);
+        return res.data;
+    } catch (error) {
+        // console.log(error.response.data.message);
+        throw new Error(error.response.data.message);
+    }
+};
+
+export const bookmark_Ops = async ({
+    method, // "get", "post", "put", "delete"
+    op_Type, // new, delete, all
+    tmdb_id,
+    data,
+    token,
+}) => {
+    //op_Type = create/find_all/delete
+    console.log("calling bookmark api...");
+    let param = op_Type;
+
+    if (op_Type === "delete") param = tmdb_id;
+    const url = `${localUrl}/bookmark/${param}`;
+
+    const config = {
+        method,
+        url,
+        headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+        },
+        data: { tmdb_id, data },
+    };
+
+    // console.log(config);
+
+    try {
+        const response = await axios(config);
+        console.log("bookmark response: ", response.data);
+        return response.data;
+    } catch (error) {
+        // console.log(error.response.data.message);
+        throw new Error(error.response.data.message);
+    }
 };
 
 //LOGIN:
