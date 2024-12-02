@@ -28,6 +28,7 @@ function App() {
         type: "register",
     });
     const [allBookmarks, setAllBookmarks] = useState(new Map());
+    const [displayUserProfile, setDisplayUserProfile] = useState(false);
 
     //on 1s load
     useEffect(() => {
@@ -150,6 +151,12 @@ function App() {
         );
     };
 
+    const handleUserProfileDisplay = () => setDisplayUserProfile((pre) => !pre);
+    const handleUserLogout = () => {
+        window.localStorage.removeItem("ewa_user");
+        setAllBookmarks(new Map());
+    };
+
     return (
         <ModalContext.Provider value={[Modal, SetModal]}>
             <Navbar
@@ -159,6 +166,7 @@ function App() {
                 categoreyName={categoreyName}
                 logoClick_resetApp={logoClick_resetApp}
                 handleAuthPage={handleAuthPage}
+                handleUserProfileDisplay={handleUserProfileDisplay}
             />
             <AppBody
                 dummyData={dummyData}
@@ -175,7 +183,12 @@ function App() {
             />
             <ModalComp />
             {displayAuthPage()}
-            <UserProfile />
+            {displayUserProfile ? (
+                <UserProfile
+                    handleUserLogout={handleUserLogout}
+                    handleAuthPage={handleAuthPage}
+                />
+            ) : null}
         </ModalContext.Provider>
     );
 }

@@ -24,6 +24,7 @@ const Navbar = (props) => {
         handleCategoreyName,
         categoreyName,
         logoClick_resetApp,
+        handleUserProfileDisplay,
     } = props;
 
     //functions
@@ -67,6 +68,7 @@ const Navbar = (props) => {
                     src={displayPicture}
                     alt="display picture"
                     className="displayPicture"
+                    onClick={handleUserProfileDisplay}
                 />
             </span>
         </nav>
