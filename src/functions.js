@@ -56,18 +56,6 @@ export const trim_string = (str, len = 20) => {
     return `${result}...`;
 };
 
-export const debounce = (func, delay) => {
-    let timeoutId;
-    return (...args) => {
-        if (timeoutId) {
-            clearTimeout(timeoutId);
-        }
-        timeoutId = setTimeout(() => {
-            func(...args);
-        }, delay);
-    };
-};
-
 /* 
 data = {
   token, 

@@ -1,0 +1,24 @@
+.userProfile {
+    position: fixed;
+    top: calc(56px + 1rem);
+    left: auto;
+    right: 1rem;
+    height: 250px;
+}
+
+/* all screens above 768px */
+@media screen and (min-width: 768px) {
+    .userProfile {
+        top: calc(56px + 2rem);
+        right: 1rem;
+    }
+}
+
+/* all screens above 1024px */
+@media screen and (min-width: 1024px) {
+    .userProfile {
+        top: auto;
+        bottom: 0;
+        left: calc(1rem + 6rem + 1rem);
+    }
+}

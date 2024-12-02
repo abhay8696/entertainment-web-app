@@ -11,6 +11,7 @@ import ModalComp from "./components/ModalComp/ModalComp.jsx";
 import { localData } from "./functions.js";
 import Authentication from "./components/Authentication/Authentication.jsx";
 import { bookmark_Ops } from "./backend_functions.js";
+import UserProfile from "./components/UserProfile/UserProfile.jsx";
 
 const filterArr = ["all", "movie", "tv", "bookmark"];
 
@@ -174,6 +175,7 @@ function App() {
             />
             <ModalComp />
             {displayAuthPage()}
+            <UserProfile />
         </ModalContext.Provider>
     );
 }

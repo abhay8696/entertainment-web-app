@@ -33,3 +33,7 @@ export default {
     },
     plugins: [],
 };
+
+/**
+ * npx tailwindcss -i ./index.css -o ./src/output.css --watch
+ */
