@@ -147,6 +147,7 @@ function App() {
             <Authentication
                 type={authPage.type}
                 handleAuthPage={handleAuthPage}
+                handleBookMarks={handleBookMarks}
             />
         );
     };

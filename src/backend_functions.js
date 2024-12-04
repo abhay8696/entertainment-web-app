@@ -1,9 +1,11 @@
 import axios from "axios";
-const localUrl = "http://localhost:8083/v1";
+// const serverUrl = "https://backend-entertainment-web-app.vercel.app/v1";
+//variables
+const serverUrl = import.meta.env.VITE_REACT_APP_serverURL; //development/production backend url
 
 export const authFunction = async ({ authType, name, email, password }) => {
     if (!email || !password) return;
-    const url = `${localUrl}/auth/${authType}`;
+    const url = `${serverUrl}/auth/${authType}`;
     const body = { name, email, password };
 
     try {
@@ -29,7 +31,7 @@ export const bookmark_Ops = async ({
     let param = op_Type;
 
     if (op_Type === "delete") param = tmdb_id;
-    const url = `${localUrl}/bookmark/${param}`;
+    const url = `${serverUrl}/bookmark/${param}`;
 
     const config = {
         method,
