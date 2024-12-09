@@ -92,36 +92,9 @@ function App() {
         SetModal({ ...Modal, position: "down" });
     };
 
-    const handleBookMarks = async (tmdb_id, data) => {
-        //check if user is logged in
-        //check if tmdb_id is present is allBookmarks map
-        //if true delete, and call backend function
-        //else add new, and call backend function
-        //else display auth page
-
-        const userData = JSON.parse(window.localStorage.getItem("ewa_user"));
-
-        if (userData) {
-            let method, op_Type;
-            if (allBookmarks.has(tmdb_id)) {
-                method = "delete";
-                op_Type = "delete";
-            } else {
-                method = "post";
-                op_Type = "new";
-            }
-            let updatedBookmarks = await bookmark_Ops({
-                method,
-                op_Type,
-                tmdb_id,
-                data,
-                token: JSON.parse(window.localStorage.getItem("ewa_user"))
-                    .token,
-            });
-
-            if (updatedBookmarks) updateAllBookmarks(updatedBookmarks);
-        } else handleAuthPage(true, "login");
-        console.log(userData);
+    const handleBookMarks = async (isUserLoggedIn, updatedBookmarks) => {
+        if (isUserLoggedIn) updateAllBookmarks(updatedBookmarks);
+        else handleAuthPage(true, "login");
     };
 
     const closeSearch = () => {
