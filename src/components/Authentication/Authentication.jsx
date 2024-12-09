@@ -113,7 +113,15 @@ const Authentication = ({ type, handleAuthPage }) => {
                     borderColor: formError.status ? "#EF4444" : "#161D2F",
                 }}
             >
-                <p className="capitalize text-left text-h3">{type}</p>
+                <p className="capitalize flex justify-between items-center">
+                    <span className="text-h3">{type}</span>
+                    <butto
+                        className="p-2 bg-gray-500 rounded-lg cursor-pointer"
+                        onClick={() => handleAuthPage(false, type)}
+                    >
+                        cancel
+                    </butto>
+                </p>
                 {dispayNameInput()}
                 <input
                     type="email"
