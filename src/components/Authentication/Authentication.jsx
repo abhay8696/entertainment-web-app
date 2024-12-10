@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { authFunction } from "../../backend_functions";
 import { set_localUserData } from "../../functions";
+//assets
+import loadingIcon from "../../assets/icon-loading.svg";
 
-const Authentication = ({ type, handleAuthPage }) => {
+const Authentication = ({ type, handleAuthPage, fetchBookmarks }) => {
+    //states
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -12,6 +15,7 @@ const Authentication = ({ type, handleAuthPage }) => {
         status: false,
         msg: "",
     });
+    const [loading, setLoading] = useState(false);
 
     //functions
     const handleChange = (event) => {
@@ -24,6 +28,7 @@ const Authentication = ({ type, handleAuthPage }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        setLoading(true);
         let response;
         try {
             const res = await authFunction({
@@ -42,12 +47,15 @@ const Authentication = ({ type, handleAuthPage }) => {
             window.localStorage.removeItem("ewa_user");
         }
 
+        setLoading(false);
+
         if (response) {
             set_localUserData({
                 token: response.tokens.access.token,
                 name: response.user.name,
                 email: response.user.email,
             });
+            fetchBookmarks();
             handleAuthPage(false, type);
         }
     };
@@ -143,12 +151,34 @@ const Authentication = ({ type, handleAuthPage }) => {
                 />
                 {displayError()}
                 <button
-                    className="bg-primary p-4 rounded-lg mt-6"
+                    className={`
+                        ${loading ? "bg-gray-500" : "bg-primary"}
+                         p-4 rounded-lg mt-6 flex items-center justify-center
+                        `}
                     type="submit"
                 >
+                    <img
+                        src={loadingIcon}
+                        alt="loading"
+                        className="nav-icon mx-2"
+                        style={{
+                            opacity: `${loading ? "1" : "0"}`,
+                            animation: "rotate 5s linear infinite", //animation decalred in index.css
+                        }}
+                    />
                     {type === "login"
                         ? "Login to your account"
                         : "Create an account"}
+
+                    <img
+                        src={loadingIcon}
+                        alt="loading"
+                        className="nav-icon mx-2"
+                        style={{
+                            opacity: `${loading ? "1" : "0"}`,
+                            animation: "rotate 5s linear infinite", //animation decalred in index.css
+                        }}
+                    />
                 </button>
                 {type === "login"
                     ? displayRegisterMessage()

@@ -63,17 +63,23 @@ function App() {
                 movie: recommendedMovies,
             });
 
+        await fetchBookmarks();
+    };
+
+    const fetchBookmarks = async () => {
+        console.log("fetching bookmarks");
         //get all bookmarks
         //only if user is looged in
         const userData = JSON.parse(window.localStorage.getItem("ewa_user"));
-        if (userData) {
-            const getBookmarks = await bookmark_Ops({
-                method: "get",
-                op_Type: "all",
-                token: userData.token,
-            });
-            if (getBookmarks) updateAllBookmarks(getBookmarks);
-        }
+        if (!userData) return;
+
+        const getBookmarks = await bookmark_Ops({
+            method: "get",
+            op_Type: "all",
+            token: userData.token,
+        });
+        if (getBookmarks) updateAllBookmarks(getBookmarks);
+        return;
     };
 
     const updateAllBookmarks = (array) => {
@@ -111,7 +117,9 @@ function App() {
         SetModal({ ...Modal, position: "down" });
     };
 
-    const handleAuthPage = (status, type) => setAuthPage({ status, type });
+    const handleAuthPage = (status, type) => {
+        setAuthPage({ status, type });
+    };
 
     const displayAuthPage = () => {
         if (!authPage.status) return null;
@@ -121,6 +129,7 @@ function App() {
                 type={authPage.type}
                 handleAuthPage={handleAuthPage}
                 handleBookMarks={handleBookMarks}
+                fetchBookmarks={fetchBookmarks}
             />
         );
     };
@@ -161,6 +170,7 @@ function App() {
                 <UserProfile
                     handleUserLogout={handleUserLogout}
                     handleAuthPage={handleAuthPage}
+                    handleUserProfileDisplay={handleUserProfileDisplay}
                 />
             ) : null}
         </ModalContext.Provider>
