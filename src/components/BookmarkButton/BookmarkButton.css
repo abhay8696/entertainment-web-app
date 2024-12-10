@@ -11,8 +11,18 @@
     right: 12px;
 }
 
-.bookmarkButton:hover {
-    opacity: 1;
+/* For devices that support hover (e.g., desktops) */
+@media (hover: hover) and (pointer: fine) {
+    .bookmarkButton:hover {
+        opacity: 1;
+    }
+}
+
+/* For devices with no hover support (e.g., touch devices) */
+@media (hover: none) and (pointer: coarse) {
+    .bookmarkButton:active {
+        opacity: 1;
+    }
 }
 
 /* all screens above 768px */

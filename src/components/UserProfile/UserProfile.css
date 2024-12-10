@@ -4,6 +4,7 @@
     left: auto;
     right: 1rem;
     height: 250px;
+    z-index: 25;
 }
 
 /* all screens above 768px */
