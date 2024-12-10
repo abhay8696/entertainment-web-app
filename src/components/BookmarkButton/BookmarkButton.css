@@ -1,0 +1,32 @@
+.bookmarkButton {
+    background-color: var(--color-dark-blue);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    opacity: 0.35;
+    position: absolute;
+    cursor: pointer;
+    transition: 250ms all;
+}
+
+.bookmarkButtonInCard {
+    top: 12px;
+    right: 12px;
+}
+
+.bookmarkButtonInModalComp {
+    bottom: 1rem;
+    right: 1rem;
+}
+
+.bookmarkButton:hover {
+    opacity: 1;
+}
+
+/* all screens above 768px */
+@media screen and (min-width: 768px) {
+    .bookmarkButton {
+        top: 20px;
+        right: 20px;
+    }
+}
