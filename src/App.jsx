@@ -164,7 +164,10 @@ function App() {
                 TMDB_recommended={TMDB_recommended}
                 handleAuthPage={handleAuthPage}
             />
-            <ModalComp />
+            <ModalComp
+                handleBookMarks={handleBookMarks}
+                allBookmarks={allBookmarks}
+            />
             {displayAuthPage()}
             {displayUserProfile ? (
                 <UserProfile

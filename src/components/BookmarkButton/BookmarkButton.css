@@ -7,16 +7,8 @@
     position: absolute;
     cursor: pointer;
     transition: 250ms all;
-}
-
-.bookmarkButtonInCard {
     top: 12px;
     right: 12px;
-}
-
-.bookmarkButtonInModalComp {
-    bottom: 1rem;
-    right: 1rem;
 }
 
 .bookmarkButton:hover {

@@ -11,8 +11,10 @@ import Card from "../Card/Card";
 import Credits from "../Credits/Credits";
 import VideosRow from "../VideosRow/VideosRow";
 import ImagesGrid from "../ImagesGrid/ImagesGrid";
+import BookmarkButton from "../BookmarkButton/BookmarkButton";
 
-const ModalComp = () => {
+const ModalComp = (props) => {
+    const { allBookmarks, handleBookMarks } = props;
     //states
     const [moreData, setMoreData] = useState(null);
     const [cast, setCast] = useState(null);
@@ -169,7 +171,10 @@ const ModalComp = () => {
                         className="align-self-center modalPoster rounded-xl modalPoster-small"
                     />
                 </div>
-                <div className="modalHead py-2 md:py-4 flex gap-4 items-center md:rounded-xl">
+                <div
+                    // onClick={() => console.log(Modal.data.id)}
+                    className="modalHead relative py-2 md:py-4 flex gap-4 items-center md:rounded-xl"
+                >
                     <img
                         src={poster_path}
                         className="modalPoster rounded-xl modalPoster-big"
@@ -189,6 +194,12 @@ const ModalComp = () => {
                             {overview}
                         </p>
                     </div>
+                    <BookmarkButton
+                        handleBookMarks={handleBookMarks}
+                        allBookmarks={allBookmarks}
+                        tmdbID={Modal.data.id}
+                        tv_Movie_data={Modal.data}
+                    />
                 </div>
 
                 <p className="modalOverview md:hidden">{overview}</p>

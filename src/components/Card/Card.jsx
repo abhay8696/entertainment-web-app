@@ -64,7 +64,7 @@ const Card = (props) => {
     return (
         <div
             className={`CardWrapper ${customClassName} cursor-pointer `}
-            onClick={() => console.log(allData)}
+            // onClick={() => console.log(allData)}
         >
             <div
                 className={`Card flex ${parentComp}-card`}
@@ -82,7 +82,6 @@ const Card = (props) => {
                     allBookmarks={allBookmarks}
                     tmdbID={cardID}
                     tv_Movie_data={allData}
-                    customClass={"bookmarkButtonInCard"}
                 />
                 {parentComp === "Trending" ? (
                     <DisplayInfo padding="p-3 md:p-5" />
