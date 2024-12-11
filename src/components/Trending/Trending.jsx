@@ -62,6 +62,7 @@ const Trending = (props) => {
     };
 
     const displayTMDB_trending = () => {
+        // console.log(TMDB_trending);
         if (!TMDB_trending) return displayDummyData();
 
         return TMDB_trending?.[`${categoreyName}`]
@@ -113,16 +114,27 @@ const Trending = (props) => {
     return (
         <>
             <h1 className="px-4 md:px-0 lg:px-9">Trending</h1>
-            <marquee behavior="alternate" scrollamount="5">
-                <div className="flex gap-4 trendCardGrid">
-                    {/* {displayDummyData()} */}
-                    {TMDB_trending
-                        ? displayTMDB_trending()
-                        : displayDummyData()}
+            <div className="scrollable-container">
+                <div className="scrollable-content">
+                    <div className="flex gap-4 trendCardGrid">
+                        {/* {displayDummyData()} */}
+                        {TMDB_trending
+                            ? displayTMDB_trending()
+                            : displayDummyData()}
+                    </div>
                 </div>
-            </marquee>
+            </div>
         </>
     );
 };
 
 export default Trending;
+
+// <marquee behavior="alternate" scrollamount="5">
+// <div className="flex gap-4 trendCardGrid">
+//     {/* {displayDummyData()} */}
+//     {TMDB_trending
+//         ? displayTMDB_trending()
+//         : displayDummyData()}
+// </div>
+// </marquee>

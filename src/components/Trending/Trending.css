@@ -1,53 +1,88 @@
-
-.trendingDiv{
+.trendingDiv {
 }
 
-marquee{
+marquee {
 }
 
-.trendCardGrid{
+.trendCardGrid {
     /* overflow-x: scroll; */
 }
 
-.trendingDiv marquee{
+.trendingDiv marquee {
     /* background-color: rebeccapurple; */
 }
 
-.trendCard-1{
+.trendCard-1 {
     margin-left: 1rem;
 }
 
-.trendCard-5{
+.trendCard-5 {
     margin-right: 1rem;
 }
 
 /* all screens above 768px */
-@media screen and (min-width: 768px) and (max-width: 1024px){
-    .trendCardGrid{
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .trendCardGrid {
         /* width: calc(100vw); */
         margin-left: -1rem;
-    }  
-    marquee{
+    }
+    marquee {
         margin: 0 -1rem;
     }
 }
 
 /* all screens above 1024px */
 @media screen and (min-width: 1024px) {
-    .trendingDiv{
-        max-width: calc(100vw - 2rem - 96px - 72px); /* total screen width - padding on both sides - navbar width*/
+    .trendingDiv {
+        max-width: calc(
+            100vw - 2rem - 96px - 72px
+        ); /* total screen width - padding on both sides - navbar width*/
         /* max-width: 500px; */
-    }  
-    .trendCardGrid{
+    }
+    .trendCardGrid {
         /* width: calc(100% + 5.5rem); */
-    }  
-    .trendCard-1{
+    }
+    .trendCard-1 {
         margin-left: 36px;
     }
-    .trendCard-5{
+    .trendCard-5 {
         margin-right: 3rem;
     }
-    marquee{
+    marquee {
         width: calc(100vw - 2rem - 72px);
     }
+}
+
+/* Outer container to allow manual scrolling */
+.scrollable-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent content wrapping */
+    position: relative; /* To position child elements properly */
+    width: 110%; /* Full width of the viewport */
+    height: auto; /* Automatically adjust height to content */
+    scroll-behavior: smooth; /* Smooth manual scrolling */
+}
+
+/* Inner content for automatic scrolling */
+.scrollable-content {
+    display: inline-block; /* Keep all content in a single row */
+    animation: scroll 100s linear infinite alternate-reverse; /* Automatic scrolling animation */
+}
+
+/* Scrolling animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0%); /* Start position */
+    }
+    100% {
+        transform: translateX(
+            -80%
+        ); /* End position, fully scrolled to the left */
+    }
+}
+
+/* Optional styling for child elements */
+.trendCardGrid {
+    display: flex; /* Arrange items in a row */
+    gap: 16px; /* Space between items */
 }
