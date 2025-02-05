@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 //styles
 import "./SearchComp.css";
 //assets
@@ -15,8 +15,19 @@ const SearchComp = (props) => {
     } = props;
     //states
     const [text, setText] = useState("");
+    const [suggestionsResult, setSuggestionsResult] = useState([]);
     //refs
     const inputRef = useRef(null);
+
+    //side effects on input change
+    // Debounce function
+    useEffect(() => {
+        if (text.length < 3) return;
+
+        const delayDebounceFn = setTimeout(() => getTMDB(text), 500); // Wait for 500ms after user stops typing
+
+        return () => clearTimeout(delayDebounceFn); // Cleanup the timeout
+    }, [text]);
 
     //functions
     const handleChange = (evt) => {
@@ -50,7 +61,7 @@ const SearchComp = (props) => {
 
     return (
         <form
-            className="SearchComp flex items-center justify-start gap-2"
+            className="relative SearchComp flex items-center justify-start gap-2"
             onSubmit={handleSubmit}
         >
             <label htmlFor="searchText flex items-center justify-center">
